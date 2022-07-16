@@ -30,6 +30,7 @@ public class PlanningPhaseManager : MonoBehaviour
     [SerializeField] private EventChannelSO _diceRolledChannelSO;
     [SerializeField] private EventChannelSO _startCombatChannelSO;
     [SerializeField] private EventChannelSO _quitToMenuChannelSO;
+    [SerializeField] private EventChannelSO _gameOverChannelSO;
  
     [Header("Dice SO")]
     [SerializeField] private FloorDice _dice;
@@ -39,6 +40,7 @@ public class PlanningPhaseManager : MonoBehaviour
         _loadFloorChannelSO.OnEventRaised += LoadFloor;
         _diceRolledChannelSO.OnEventRaised += DiceRolled;
         _quitToMenuChannelSO.OnEventRaised += HideControls;
+        _gameOverChannelSO.OnEventRaised += HideControls;
     }
 
     private void OnDisable()
@@ -46,6 +48,7 @@ public class PlanningPhaseManager : MonoBehaviour
         _loadFloorChannelSO.OnEventRaised -= LoadFloor;
         _diceRolledChannelSO.OnEventRaised -= DiceRolled;
         _quitToMenuChannelSO.OnEventRaised -= HideControls;
+        _gameOverChannelSO.OnEventRaised -= HideControls;
     }
 
     private void HideControls()
@@ -69,7 +72,7 @@ public class PlanningPhaseManager : MonoBehaviour
 
         //SetRerollDetail();
 
-        Init(1);
+        Init();
 
         // now load dice!
         _setupDiceChannelSO.RaiseEvent();
@@ -117,12 +120,12 @@ public class PlanningPhaseManager : MonoBehaviour
 
 
 
-    public void Init(int floor)
+    public void Init()
     {
         // The floor determines how many dice are available (also what those dice are?)
 
         _dice.Empty();
-        _numDice = GameManager.Instance.GetNumDice(floor);
+        _numDice = GameManager.Instance.GetNumDice();
 
         for (int i = 0; i < _numDice; i++)
         {

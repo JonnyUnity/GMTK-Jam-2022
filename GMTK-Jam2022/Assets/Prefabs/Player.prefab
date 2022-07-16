@@ -178,7 +178,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0031835437, y: -0.0127342045}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -189,7 +189,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.31871736, y: 0.42695844}
   m_EdgeRadius: 0
 --- !u!50 &5561879930538144037
 Rigidbody2D:
@@ -225,7 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerBody: {fileID: 5561879930538144037}
-  speed: 5
+  speed: 20
   projectile: {fileID: 8362372360304294050, guid: a6c61e0171016dd40b2981d9d44b66a0, type: 3}
   force: 10
 --- !u!95 &108927784802419690
@@ -348,4 +348,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePoint: {fileID: 6755915180894215002}
   projectile: {fileID: 8362372360304294050, guid: a6c61e0171016dd40b2981d9d44b66a0, type: 3}
-  force: 10

@@ -10,6 +10,9 @@ public class GameManager : Singleton<GameManager>
     [Header("Event Channels")]
     [SerializeField] private FadeChannelSO _fadeChannelSO;
     [SerializeField] private EventChannelSO _loadFloorChannelSO;
+    [SerializeField] private EventChannelSO _updateScoreChannelSO;
+    [SerializeField] private EventChannelSO _gameOverChannelSO;
+    
 
     private float _fadeDuration = 2f;
     private int _sceneIndex;
@@ -19,6 +22,10 @@ public class GameManager : Singleton<GameManager>
     private int _numRerolls = 3;
     private int _floor = 1;
     private int _score = 0;
+
+
+    [SerializeField] private int[] _NumDiceForFloor;
+    [SerializeField] private int _maxFloors = 10;
 
 
     public int Floor
@@ -64,10 +71,14 @@ public class GameManager : Singleton<GameManager>
         _currentSceneIndex = scene.buildIndex;
         _fadeChannelSO.FadeIn(_fadeDuration);
 
-        if (_currentSceneIndex >= 3)
+        if (_currentSceneIndex == 3)
         {
             // we're in the game!
             LoadArena();
+        }
+        else if (_currentSceneIndex == 4)
+        {
+            _gameOverChannelSO.RaiseEvent();
         }
 
 
@@ -140,9 +151,9 @@ public class GameManager : Singleton<GameManager>
 
     }
 
-    public int GetNumDice(int floor)
+    public int GetNumDice()
     {
-        return 1;
+        return _NumDiceForFloor[_floor];
     }
 
 
@@ -157,6 +168,27 @@ public class GameManager : Singleton<GameManager>
     {
         _floor++;
         _score += 100;
+        if (_floor >= _maxFloors)
+        {
+            _gameOverChannelSO.RaiseEvent();
+            _sceneIndex = 4;
+
+            StartCoroutine(UnloadPreviousScene());
+        }
+        else
+        {
+            _updateScoreChannelSO.RaiseEvent();
+            _loadFloorChannelSO.RaiseEvent();
+        }       
+
+    }
+
+
+    public void AddScore(int num)
+    {
+        _score += num;
+        _updateScoreChannelSO.RaiseEvent();
+
     }
 
 

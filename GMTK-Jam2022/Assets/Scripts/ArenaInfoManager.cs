@@ -16,18 +16,26 @@ public class ArenaInfoManager : MonoBehaviour
     [SerializeField] private EventChannelSO _loadFloorChannelSO;
     [SerializeField] private EventChannelSO _scoreUpdatedChannelSO;
     [SerializeField] private EventChannelSO _quitToMenuChannelSO;
+    [SerializeField] private EventChannelSO _gameOverChannelSO;
 
 
     private void OnEnable()
     {
         _loadFloorChannelSO.OnEventRaised += UpdateFloorText;
         _scoreUpdatedChannelSO.OnEventRaised += UpdateScoreText;
+        _gameOverChannelSO.OnEventRaised += HideInfo;
     }
 
     private void OnDisable()
     {
         _loadFloorChannelSO.OnEventRaised -= UpdateFloorText;
         _scoreUpdatedChannelSO.OnEventRaised -= UpdateScoreText;
+        _gameOverChannelSO.OnEventRaised -= HideInfo;
+    }
+
+    private void HideInfo()
+    {
+        _infoPanel.SetActive(false);
     }
 
     private void UpdateScoreText()

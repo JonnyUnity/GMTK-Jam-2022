@@ -807,6 +807,7 @@ MonoBehaviour:
   _loadFloorChannelSO: {fileID: 11400000, guid: 859291684761a6f43bb5b6940cb5feed, type: 2}
   _scoreUpdatedChannelSO: {fileID: 11400000, guid: 29c9b90b850f90349bc0168f6b61c097, type: 2}
   _quitToMenuChannelSO: {fileID: 11400000, guid: 3a5c316c153816a4fbfdb5b63ef05d09, type: 2}
+  _gameOverChannelSO: {fileID: 11400000, guid: f475b5b5ecccc09498c5c4a8c08f584f, type: 2}
 --- !u!1 &684125945
 GameObject:
   m_ObjectHideFlags: 0
@@ -1046,6 +1047,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fadeChannelSO: {fileID: 11400000, guid: a462693880cbaef45a117d4e2eaae6a7, type: 2}
   _loadFloorChannelSO: {fileID: 11400000, guid: 859291684761a6f43bb5b6940cb5feed, type: 2}
+  _updateScoreChannelSO: {fileID: 11400000, guid: 29c9b90b850f90349bc0168f6b61c097, type: 2}
+  _gameOverChannelSO: {fileID: 11400000, guid: f475b5b5ecccc09498c5c4a8c08f584f, type: 2}
+  _NumDiceForFloor: 0000000001000000020000000200000003000000040000000500000006000000070000000800000009000000
+  _maxFloors: 2
 --- !u!4 &1013696313
 Transform:
   m_ObjectHideFlags: 0
@@ -2118,6 +2123,7 @@ MonoBehaviour:
   _diceRolledChannelSO: {fileID: 11400000, guid: 87518215e650c50489af2baf2a29bcf1, type: 2}
   _startCombatChannelSO: {fileID: 11400000, guid: 7ab86cbd23bf6b6439448b095a67c906, type: 2}
   _quitToMenuChannelSO: {fileID: 11400000, guid: 3a5c316c153816a4fbfdb5b63ef05d09, type: 2}
+  _gameOverChannelSO: {fileID: 11400000, guid: f475b5b5ecccc09498c5c4a8c08f584f, type: 2}
   _dice: {fileID: 11400000, guid: af60b43d753165941abda9a0639e43bb, type: 2}
 --- !u!1 &1794417206
 GameObject:
