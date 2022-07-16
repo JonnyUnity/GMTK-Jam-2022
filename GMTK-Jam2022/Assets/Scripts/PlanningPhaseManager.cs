@@ -59,8 +59,13 @@ public class PlanningPhaseManager : MonoBehaviour
     {
         // get number of dice!
         _buttonContainer.SetActive(true);
+        _rollButton.SetActive(true);
+        _goButton.SetActive(false);
+
         _dicePanel.SetActive(true);
-        _remainingText.gameObject.SetActive(false);
+        //_remainingText.gameObject.SetActive(false);
+
+        _rerollPanel.SetActive(false);
 
         //SetRerollDetail();
 

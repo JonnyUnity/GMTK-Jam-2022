@@ -130,7 +130,9 @@ public class GameManager : Singleton<GameManager>
 
     public int LoadArena()
     {
-        
+
+        _floor = 1;
+        _numRerolls = 3;
 
         _loadFloorChannelSO.RaiseEvent();
         return _numDice;
