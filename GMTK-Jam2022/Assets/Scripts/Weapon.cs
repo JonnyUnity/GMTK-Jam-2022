@@ -7,7 +7,7 @@ public class Weapon : MonoBehaviour
     public Transform firePoint;
     public GameObject projectile;
     public float force;
-    public float fireRate = 1f;
+    public float fireRate = 2f;
     private float lastShot = 0;
 
     // Vector3 position;
@@ -33,8 +33,11 @@ public class Weapon : MonoBehaviour
         {
             GameObject spell = Instantiate(projectile, firePoint.position, firePoint.rotation);
             Rigidbody2D rb = spell.GetComponent<Rigidbody2D>();
+            spell.GetComponent<SpriteRenderer>().transform.rotation = firePoint.rotation;
             rb.AddForce(firePoint.up * force, ForceMode2D.Impulse);
-
+            lastShot = Time.time;
         }
     }
+
+
 }

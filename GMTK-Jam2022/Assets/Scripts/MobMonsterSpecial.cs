@@ -68,8 +68,9 @@ public class MobMonsterSpecial : MonoBehaviour
     {
         if (Time.time > fireRate + lastShot)
         {
+            Vector2 spawnPos = new Vector2(monRigidbody.position.x, monRigidbody.position.y + 1f);
 
-            Instantiate(projectile, monRigidbody.position, Quaternion.identity);
+            Instantiate(projectile, spawnPos, Quaternion.identity);
             lastShot = Time.time;
         }
 

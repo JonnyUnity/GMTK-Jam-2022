@@ -19,7 +19,7 @@ public class Projectile : MonoBehaviour
     void Update()
     {
 
-        transform.position += shootDirection * speed * Time.deltaTime;
+        //transform.position += shootDirection * speed * Time.deltaTime;
     }
 
 

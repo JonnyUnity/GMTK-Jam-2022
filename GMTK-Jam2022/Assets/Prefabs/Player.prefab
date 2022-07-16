@@ -203,7 +203,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 2
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -225,9 +225,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerBody: {fileID: 5561879930538144037}
-  speed: 5
+  speed: 0.5
   projectile: {fileID: 8362372360304294050, guid: a6c61e0171016dd40b2981d9d44b66a0, type: 3}
   force: 10
+  playerMod: {fileID: 0}
 --- !u!95 &108927784802419690
 Animator:
   serializedVersion: 4
@@ -349,3 +350,4 @@ MonoBehaviour:
   firePoint: {fileID: 6755915180894215002}
   projectile: {fileID: 8362372360304294050, guid: a6c61e0171016dd40b2981d9d44b66a0, type: 3}
   force: 10
+  fireRate: 2
