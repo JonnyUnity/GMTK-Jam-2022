@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    public float speed;
+    public Rigidbody2D projectRigid;
+    private Vector3 shootDirection;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,7 +18,12 @@ public class Projectile : MonoBehaviour
     void Update()
     {
 
+        transform.position += shootDirection * speed * Time.deltaTime;
     }
 
+    public void MoveTo(Vector3 shootDir)
+    {
+        shootDirection = shootDir;
 
+    }
 }

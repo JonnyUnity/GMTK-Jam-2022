@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-
+    public Transform firePoint;
     public GameObject projectile;
+
+
 
     // Vector3 position;
     // Start is called before the first frame update
@@ -20,9 +22,11 @@ public class Weapon : MonoBehaviour
 
     }
 
-    public void Shoot()
+    public void Shoot(Vector3 cameraPoint)
     {
-        Instantiate(projectile, transform.position, Quaternion.identity);
 
+        var spell = Instantiate(projectile, firePoint.position, Quaternion.identity);
+        Vector3 shootDir = cameraPoint - firePoint.position.normalized;
+        spell.GetComponent<Projectile>().MoveTo(shootDir);
     }
 }

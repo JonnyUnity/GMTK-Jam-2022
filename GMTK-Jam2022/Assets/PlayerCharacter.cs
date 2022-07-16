@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,7 +38,7 @@ public class PlayerCharacter : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            GetComponentInChildren<Weapon>().Shoot();
+            GetComponentInChildren<Weapon>().Shoot(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         }
     }
 
@@ -68,4 +69,17 @@ public class PlayerCharacter : MonoBehaviour
 
 
     }
+
+
+    public Vector2 GetPosition()
+    {
+        return playerBody.position;
+    }
+
+    public void Death()
+    {
+        Destroy(gameObject);
+    }
+
+
 }
