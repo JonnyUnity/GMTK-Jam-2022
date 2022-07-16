@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +22,7 @@ public class DiceManager : MonoBehaviour
     [SerializeField] private EventChannelSO _setupDiceChannelSO;
     [SerializeField] private BoolEventChannelSO _rollDiceChannelSO;
     [SerializeField] private EventChannelSO _diceRolledChannelSO;
+    [SerializeField] private EventChannelSO _startCombatChannelSO;
 
 
     [Header("Dice SO")]
@@ -39,6 +41,7 @@ public class DiceManager : MonoBehaviour
     {
         _setupDiceChannelSO.OnEventRaised += Setup;
         _rollDiceChannelSO.OnEventRaised += RollDice;
+        _startCombatChannelSO.OnEventRaised += RemoveDice;
     }
 
 
@@ -46,6 +49,17 @@ public class DiceManager : MonoBehaviour
     {
         _setupDiceChannelSO.OnEventRaised -= Setup;
         _rollDiceChannelSO.OnEventRaised -= RollDice;
+        _startCombatChannelSO.OnEventRaised -= RemoveDice;
+    }
+
+    private void RemoveDice()
+    {
+        for (int i = _diceObjects.Count - 1; i >= 0; i--)
+        {
+            //Destroy(_diceObjects[i]);
+            _diceObjects[i].SetActive(false);
+        }
+        _diceObjects.Clear();
     }
 
 
@@ -58,11 +72,7 @@ public class DiceManager : MonoBehaviour
     public void Setup()
     {
 
-        for (int i = _diceObjects.Count - 1; i >= 0; i--)
-        {
-            Destroy(_diceObjects[i]);
-        }
-        _diceObjects.Clear();
+        RemoveDice();
 
         for (int i = 0; i < _dice.Dice.Count; i++)
         {
@@ -87,11 +97,21 @@ public class DiceManager : MonoBehaviour
     {
         if (reRoll)
         {
+            
             Setup();
+            //StartCoroutine(SetupWithDelay());
+
         }
+
         StartCoroutine(RollDiceCoroutine());
     }
 
+
+    //private IEnumerator SetupWithDelay()
+    //{
+    //    Setup();
+    //    yield return new WaitForSeconds(0.5f);
+    //}
 
     private IEnumerator RollDiceCoroutine()
     {

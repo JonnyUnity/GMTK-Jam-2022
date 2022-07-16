@@ -11,7 +11,9 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        
+#if UNITY_WEBGL && !UNITY_EDITOR
+        _quitButton.SetActive(false);
+#endif
     }
 
 

@@ -29,7 +29,8 @@ public class PlayerCharacter : MonoBehaviour
         float horizontalAxis = Input.GetAxis("Horizontal");
         float verticalAxis = Input.GetAxis("Vertical");
 
-        Vector2 moveDirection = new Vector2(horizontalAxis, verticalAxis);
+        //Vector2 moveDirection = new Vector2(horizontalAxis, verticalAxis);
+        Vector3 moveDirection = new Vector3(horizontalAxis, verticalAxis, 0);
 
         playerBody.AddForce(moveDirection * speed);
 

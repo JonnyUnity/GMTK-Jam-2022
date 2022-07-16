@@ -18,6 +18,8 @@ public class CombatManager : MonoBehaviour
     [SerializeField] private FloorDice _dice;
 
 
+    [SerializeField] private GameObject _arenaObj;
+
     private List<GameObject> _spawnedObjects;
 
     [Header("Event Channels")]
@@ -39,6 +41,8 @@ public class CombatManager : MonoBehaviour
 
     private void SpawnLevelObjects()
     {
+
+        _spawnedObjects = new List<GameObject>();
 
         foreach (var die in _dice.Dice)
         {
@@ -78,9 +82,18 @@ public class CombatManager : MonoBehaviour
             
         }
 
-        var playerPosition = _dice.SpawnDie.Data.Position;
+        Debug.Log("SPAWN PLAYER! " + _dice.SpawnDie.Data.Transform.position);
+        Debug.Log("ARENA TRANSFORM " + _arenaObj.transform.position);
+        var playerTransform = _dice.SpawnDie.Data.Transform;
+        var playerObj = Instantiate(_playerPrefab, _arenaObj.transform, false);
 
-        Debug.Log("SPAWN PLAYER!");
+        playerObj.transform.position = new Vector3(playerTransform.position.x, playerTransform.position.y, 0);
+
+        Debug.Log(playerObj.transform.position);
+
+        _spawnedObjects.Add(playerObj);
+
+        
 
     }
 

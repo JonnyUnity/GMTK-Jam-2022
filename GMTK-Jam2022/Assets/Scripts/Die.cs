@@ -21,12 +21,12 @@ public class Die
     }
 
 
-    public void SetRolledData(int value, Vector2 position)
+    public void SetRolledData(int value, Transform transform)
     {
         Data = new DiceSpawn
         {
             DieValue = value,
-            Position = position
+            Transform = transform
         };
         
     }

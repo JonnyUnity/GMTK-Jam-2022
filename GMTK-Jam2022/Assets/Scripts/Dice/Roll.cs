@@ -103,8 +103,8 @@ public void Init(Die die)
                 //_rigidbody.AddTorque(Random.Range(50, 200), Random.Range(50, 200), Random.Range(50, 200));
                 //_rigidbody.AddForce(Random.Range(50, 200), Random.Range(50, 200), Random.Range(50, 200));
 
-                _rigidbody.AddTorque(_fudgeTorque, _fudgeTorque, _fudgeTorque);
-                _rigidbody.AddForce(_fudgeForce, 50, _fudgeForce);
+                _rigidbody.AddTorque(_fudgeTorque, _fudgeTorque, -_fudgeTorque);
+                _rigidbody.AddForce(_fudgeForce, 50, -_fudgeForce);
 
                 _fudgeForce *= 2;
                 _fudgeTorque *= 2;
@@ -130,7 +130,7 @@ public void Init(Die die)
         return new DiceSpawn
         {
             DieValue = DieValue,
-            Position = new Vector2(_transform.position.x, _transform.position.z)
+            Transform = _transform
         };
     }
 
@@ -144,8 +144,8 @@ public void Init(Die die)
         _thrown = true;
         _rigidbody.useGravity = true;
         _rigidbody.isKinematic = false;
-        _rigidbody.AddTorque(Random.Range(10, 200), Random.Range(10, 200), Random.Range(10, 200));
-        _rigidbody.AddForce(Random.Range(100, 200), Random.Range(100, 200), Random.Range(100, 200));
+        _rigidbody.AddTorque(Random.Range(10, 200), Random.Range(10, 200), -Random.Range(10, 200));
+        _rigidbody.AddForce(Random.Range(100, 200), Random.Range(100, 200), -Random.Range(100, 200));
 
     }
 
@@ -153,23 +153,18 @@ public void Init(Die die)
     private bool HasDieLanded()
     {
 
-        //bool hasDieLanded = false;
-
         for (int i = 0; i < _dieSides.Length; i++)
         {
             if (_dieSides[i].OnGround)
             {
                 DieValue = _faceValues[i];
-                _die.SetRolledData(DieValue, _transform.position);
+                _die.SetRolledData(DieValue, _transform);
                 return true;
-                //break;
             }
         }
 
         return false;
-        //return hasDieLanded;
 
     }
-
 
 }

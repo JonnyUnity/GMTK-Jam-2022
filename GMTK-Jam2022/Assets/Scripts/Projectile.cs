@@ -8,9 +8,9 @@ public class Projectile : MonoBehaviour
     public Rigidbody2D projectRigid;
     private Vector3 shootDirection;
 
-    // Start is called before the first frame update
     void Start()
     {
+
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
         //sr.transform.rotation = transform.rotation;
     }
@@ -19,10 +19,17 @@ public class Projectile : MonoBehaviour
     void Update()
     {
 
-
+        transform.position += shootDirection * speed * Time.deltaTime;
     }
+
+
+
+
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
+
+
         if (collision.gameObject.CompareTag("Monster"))
         {
             collision.gameObject.GetComponent<MobMonsterController>().Death();
@@ -41,3 +48,4 @@ public class Projectile : MonoBehaviour
     }
 
 }
+
