@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +13,34 @@ public class PlanningPhaseManager : MonoBehaviour
     [SerializeField] private Roll _diePrefab;
 
     private int _numDice;
-    private List<Roll> _dice = new List<Roll>();
 
+
+    [Header("Event Channels")]
+    [SerializeField] private EventChannelSO _rollDiceChannelSO;
+    [SerializeField] private EventChannelSO _diceRolledChannelSO;
+    [SerializeField] private EventChannelSO _startCombatChannelSO;
+ 
+    [Header("Dice SO")]
+    [SerializeField] private FloorDice _dice;
+
+    private void OnEnable()
+    {
+        _diceRolledChannelSO.OnEventRaised += DiceRolled;
+    }
+
+    private void OnDisable()
+    {
+        _diceRolledChannelSO.OnEventRaised -= DiceRolled;
+    }
+
+    private void DiceRolled()
+    {
+        Debug.Log("Dice Rolled!");
+
+        _rollButton.SetActive(false);
+        _goButton.SetActive(true);
+
+    }
 
     private void Awake()
     {
@@ -37,8 +64,8 @@ public class PlanningPhaseManager : MonoBehaviour
 
         for (int i = 0; i < _numDice; i++)
         {
-            Roll newDice = Instantiate(_diePrefab);
-            _dice.Add(newDice);
+            Die newDie = new Die();
+            _dice.Add(newDie);
         }
 
 
@@ -47,34 +74,13 @@ public class PlanningPhaseManager : MonoBehaviour
 
     public void RollDice()
     {
-        foreach(var die in _dice)
-        {
-            die.RollDie();
-        }
-
-
-        _rollButton.SetActive(false);
-        _goButton.SetActive(true);
-
+        _rollDiceChannelSO.RaiseEvent();
     }
 
 
-    public void StartAction()
+    public void StartCombat()
     {
-        // transition to the action phase...
-
-        List<DiceSpawn> diceData = new List<DiceSpawn>();
-
-        // record dice positions
-        foreach (var die in _dice)
-        {
-            diceData.Add(die.GetDieData());
-        }
-
-        // spawn stuff based on their values...
-
-
-
+        _startCombatChannelSO.RaiseEvent();
     }
 
 

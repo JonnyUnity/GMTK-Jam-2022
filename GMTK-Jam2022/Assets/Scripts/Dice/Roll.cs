@@ -17,22 +17,32 @@ public class Roll : MonoBehaviour
 
     public int DieValue { get; private set; }
 
+    private float _fudgeTorque;
+    private float _fudgeForce;
+
+    private Die _die;
 
     private void Awake()
     {
+        
         _transform = transform;
         _rigidbody = GetComponent<Rigidbody>();
         _rigidbody.useGravity = false;
+        _rigidbody.isKinematic = false;
+        DieValue = 0;
+
+        _fudgeTorque = Random.Range(50f, 100f);
+        _fudgeForce = Random.Range(50f, 100f);
+
     }
 
 
-    // Start is called before the first frame update
-    void Start()
+public void Init(Die die)
     {
-        
-
-
+        _die = die;
+        _faceValues = die.FaceValues;
     }
+
 
     // Update is called once per frame
     void Update()
@@ -41,6 +51,11 @@ public class Roll : MonoBehaviour
         //{
         //    RollDie();
         //}
+        if (HasLanded)
+            return;
+        if (!_thrown)
+            return;
+
 
         if (_rigidbody.IsSleeping() && _thrown)
         {
@@ -48,13 +63,22 @@ public class Roll : MonoBehaviour
             if (!HasDieLanded())
             {
                 // add torque to move die onto a face...
-                _rigidbody.AddTorque(Random.Range(50, 200), Random.Range(50, 200), Random.Range(50, 200));
-                _rigidbody.AddForce(Random.Range(50, 200), Random.Range(50, 200), Random.Range(50, 200));
+                //_rigidbody.AddTorque(Random.Range(50, 200), Random.Range(50, 200), Random.Range(50, 200));
+                //_rigidbody.AddForce(Random.Range(50, 200), Random.Range(50, 200), Random.Range(50, 200));
+
+                _rigidbody.AddTorque(_fudgeTorque, _fudgeTorque, _fudgeTorque);
+                _rigidbody.AddForce(_fudgeForce, 50, _fudgeForce);
+
+                _fudgeForce *= 2;
+                _fudgeTorque *= 2;
+
+
             }
             else
             {
                 HasLanded = true;
-                Debug.Log(gameObject.name + " - " + DieValue);
+                _rigidbody.isKinematic = true;
+                //Debug.Log(gameObject.name + " - " + DieValue);
             }
 
             
@@ -89,19 +113,21 @@ public class Roll : MonoBehaviour
     private bool HasDieLanded()
     {
 
-        bool hasDieLanded = false;
+        //bool hasDieLanded = false;
 
         for (int i = 0; i < _dieSides.Length; i++)
         {
             if (_dieSides[i].OnGround)
             {
                 DieValue = _faceValues[i];
-                hasDieLanded = true;
-                break;
+                _die.SetRolledData(DieValue, _transform.position);
+                return true;
+                //break;
             }
         }
 
-        return hasDieLanded;
+        return false;
+        //return hasDieLanded;
 
     }
 
