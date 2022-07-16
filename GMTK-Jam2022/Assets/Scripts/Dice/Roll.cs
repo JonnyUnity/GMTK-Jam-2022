@@ -51,6 +51,43 @@ public void Init(Die die)
         //{
         //    RollDie();
         //}
+        //if (HasLanded)
+        //    return;
+        //if (!_thrown)
+        //    return;
+
+
+        //if (_rigidbody.IsSleeping() && _thrown)
+        //{
+
+        //    if (!HasDieLanded())
+        //    {
+        //        // add torque to move die onto a face...
+        //        //_rigidbody.AddTorque(Random.Range(50, 200), Random.Range(50, 200), Random.Range(50, 200));
+        //        //_rigidbody.AddForce(Random.Range(50, 200), Random.Range(50, 200), Random.Range(50, 200));
+
+        //        _rigidbody.AddTorque(_fudgeTorque, _fudgeTorque, _fudgeTorque);
+        //        _rigidbody.AddForce(_fudgeForce, 50, _fudgeForce);
+
+        //        _fudgeForce *= 2;
+        //        _fudgeTorque *= 2;
+
+
+        //    }
+        //    else
+        //    {
+        //        HasLanded = true;
+        //        _rigidbody.isKinematic = true;
+        //        //Debug.Log(gameObject.name + " - " + DieValue);
+        //    }
+
+            
+        //}
+
+    }
+
+    private void FixedUpdate()
+    {
         if (HasLanded)
             return;
         if (!_thrown)
@@ -81,10 +118,12 @@ public void Init(Die die)
                 //Debug.Log(gameObject.name + " - " + DieValue);
             }
 
-            
+
         }
 
+
     }
+
 
     public DiceSpawn GetDieData()
     {
@@ -104,8 +143,9 @@ public void Init(Die die)
 
         _thrown = true;
         _rigidbody.useGravity = true;
+        _rigidbody.isKinematic = false;
         _rigidbody.AddTorque(Random.Range(10, 200), Random.Range(10, 200), Random.Range(10, 200));
-        _rigidbody.AddForce(Random.Range(10, 200), Random.Range(10, 200), Random.Range(10, 200));
+        _rigidbody.AddForce(Random.Range(100, 200), Random.Range(100, 200), Random.Range(100, 200));
 
     }
 

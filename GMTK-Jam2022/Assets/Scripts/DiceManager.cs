@@ -18,7 +18,8 @@ public class DiceManager : MonoBehaviour
     private List<DiceSpawn> _diceData = new List<DiceSpawn>();
 
     [Header("Event Channels")]
-    [SerializeField] private EventChannelSO _rollDiceChannelSO;
+    [SerializeField] private EventChannelSO _setupDiceChannelSO;
+    [SerializeField] private BoolEventChannelSO _rollDiceChannelSO;
     [SerializeField] private EventChannelSO _diceRolledChannelSO;
 
 
@@ -26,72 +27,82 @@ public class DiceManager : MonoBehaviour
     [SerializeField] private FloorDice _dice;
 
 
+    [Header("Dice Spawns")]
+    [SerializeField] private Transform _spawnDieSpawn;
+    [SerializeField] private Transform[] _diceSpawns;
+
+
     private WaitForSeconds _rollDelay = new WaitForSeconds(0.25f);
 
 
     private void OnEnable()
     {
-        _rollDiceChannelSO.OnEventRaised += RollDice;   
+        _setupDiceChannelSO.OnEventRaised += Setup;
+        _rollDiceChannelSO.OnEventRaised += RollDice;
     }
 
 
     private void OnDisable()
     {
+        _setupDiceChannelSO.OnEventRaised -= Setup;
         _rollDiceChannelSO.OnEventRaised -= RollDice;
     }
 
 
 
+    //private void Start()
+    //{
+    //    Setup();
+    //}
 
-
-    private void RollDice()
+    public void Setup()
     {
-        StartCoroutine(RollDiceCoroutine());
-    }
 
-
-
-    private IEnumerator RollDiceCoroutine()
-    {
         for (int i = _diceObjects.Count - 1; i >= 0; i--)
         {
             Destroy(_diceObjects[i]);
         }
         _diceObjects.Clear();
-        var currTransform = _diceSpawn;
 
-        foreach (var die in _dice.Dice)
+        for (int i = 0; i < _dice.Dice.Count; i++)
         {
-
-            GameObject newDiceObject = Instantiate(_standardDiePrefab, currTransform);
+            GameObject newDiceObject = Instantiate(_standardDiePrefab, _diceSpawns[i]);
             Roll roll = newDiceObject.GetComponent<Roll>();
-            roll.Init(die);
+            roll.Init(_dice.Dice[i]);
             _diceObjects.Add(newDiceObject);
             _rollingDice.Add(roll);
 
-            currTransform.position = new Vector3(0, 10, currTransform.position.z + 1);
-
-            //newDiceObject.RollDie();
-           // yield return _rollDelay;
         }
-        GameObject spawnDieObject = Instantiate(_spawnDiePrefab, currTransform);
+        GameObject spawnDieObject = Instantiate(_spawnDiePrefab, _spawnDieSpawn);
         Roll spawnRoll = spawnDieObject.GetComponent<Roll>();
         spawnRoll.Init(_dice.SpawnDie);
         _diceObjects.Add(spawnDieObject);
         _rollingDice.Add(spawnRoll);
-        //spawnDieObject.RollDie();
 
+
+    }
+
+
+    private void RollDice(bool reRoll = false)
+    {
+        if (reRoll)
+        {
+            Setup();
+        }
+        StartCoroutine(RollDiceCoroutine());
+    }
+
+
+    private IEnumerator RollDiceCoroutine()
+    {
 
         foreach (var obj in _rollingDice)
         {
             obj.RollDie();
         }
 
-        //yield return new WaitForSeconds(1f); // dice will always take some time to roll
 
         yield return new WaitUntil(() => GotAllDiceData());
-
-        
 
         _diceRolledChannelSO.RaiseEvent();
 

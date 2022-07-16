@@ -4,54 +4,110 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlanningPhaseManager : MonoBehaviour
 {
 
     [SerializeField] private GameObject _rollButton;
+    
     [SerializeField] private GameObject _goButton;
-    [SerializeField] private Roll _diePrefab;
+
+    [SerializeField] private GameObject _rerollPanel;
+    [SerializeField] private GameObject _rerollButton;
+    [SerializeField] private TextMeshProUGUI _remainingText;
+
+    [SerializeField] private GameObject _buttonContainer;
+    [SerializeField] private GameObject _dicePanel;
 
     private int _numDice;
 
 
     [Header("Event Channels")]
-    [SerializeField] private EventChannelSO _rollDiceChannelSO;
+    [SerializeField] private EventChannelSO _loadFloorChannelSO;
+    [SerializeField] private EventChannelSO _setupDiceChannelSO;
+    [SerializeField] private BoolEventChannelSO _rollDiceChannelSO;
     [SerializeField] private EventChannelSO _diceRolledChannelSO;
     [SerializeField] private EventChannelSO _startCombatChannelSO;
+    [SerializeField] private EventChannelSO _quitToMenuChannelSO;
  
     [Header("Dice SO")]
     [SerializeField] private FloorDice _dice;
 
     private void OnEnable()
     {
+        _loadFloorChannelSO.OnEventRaised += LoadFloor;
         _diceRolledChannelSO.OnEventRaised += DiceRolled;
+        _quitToMenuChannelSO.OnEventRaised += HideControls;
     }
 
     private void OnDisable()
     {
+        _loadFloorChannelSO.OnEventRaised -= LoadFloor;
         _diceRolledChannelSO.OnEventRaised -= DiceRolled;
+        _quitToMenuChannelSO.OnEventRaised -= HideControls;
     }
+
+    private void HideControls()
+    {
+        _dicePanel.SetActive(false);
+        _buttonContainer.SetActive(false);
+        _rerollPanel.SetActive(false);
+    }
+
+    private void LoadFloor()
+    {
+        // get number of dice!
+        _buttonContainer.SetActive(true);
+        _dicePanel.SetActive(true);
+        _remainingText.gameObject.SetActive(false);
+
+        //SetRerollDetail();
+
+        Init(1);
+
+        // now load dice!
+        _setupDiceChannelSO.RaiseEvent();
+
+
+    }
+
+
+    private void SetRerollDetail()
+    {
+        _rerollPanel.SetActive(true);
+
+        int rerollsRemaining = GameManager.Instance.RerollsRemaining;
+
+        _rerollButton.SetActive(rerollsRemaining > 0);
+        _remainingText.gameObject.SetActive(true);
+        _remainingText.text = $"Rerolls: {rerollsRemaining}";
+    }
+
 
     private void DiceRolled()
     {
         Debug.Log("Dice Rolled!");
 
         _rollButton.SetActive(false);
+
+        SetRerollDetail();
         _goButton.SetActive(true);
 
     }
 
     private void Awake()
     {
+        _buttonContainer.SetActive(false);
+        _dicePanel.SetActive(false);
     }
 
     // Start is called before the first frame update
-    void Start()
-    {
-        Init(1);
+    //void Start()
+    //{
+    //    LoadFloor();
          
-    }
+    //}
 
 
 
@@ -60,6 +116,7 @@ public class PlanningPhaseManager : MonoBehaviour
     {
         // The floor determines how many dice are available (also what those dice are?)
 
+        _dice.Empty();
         _numDice = GameManager.Instance.GetNumDice(floor);
 
         for (int i = 0; i < _numDice; i++)
@@ -74,12 +131,29 @@ public class PlanningPhaseManager : MonoBehaviour
 
     public void RollDice()
     {
-        _rollDiceChannelSO.RaiseEvent();
+        _dicePanel.SetActive(false);
+        _rollButton.SetActive(false);
+        _rollDiceChannelSO.RaiseEvent(false);
     }
 
 
+    public void RerollDice()
+    {
+
+        GameManager.Instance.UseReroll();
+        SetRerollDetail();
+
+        _rerollButton.SetActive(false);
+        _goButton.SetActive(false);
+        _rollDiceChannelSO.RaiseEvent(true);
+    }
+
     public void StartCombat()
     {
+        // deactivate/hide roll buttons when combat starts!
+        _rerollPanel.SetActive(false);
+        _goButton.SetActive(false);
+
         _startCombatChannelSO.RaiseEvent();
     }
 

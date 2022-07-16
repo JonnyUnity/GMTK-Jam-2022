@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cdec3c98f51de746906fab171201d29, type: 3}
-  m_Name: RollDiceChannelSO
+  m_Script: {fileID: 11500000, guid: 9101297d16723c94991fff5b6f787938, type: 3}
+  m_Name: SetupDiceChannelSO
   m_EditorClassIdentifier: 

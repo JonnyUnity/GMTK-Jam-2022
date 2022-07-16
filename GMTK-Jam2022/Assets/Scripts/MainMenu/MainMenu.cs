@@ -6,7 +6,7 @@ public class MainMenu : MonoBehaviour
 {
 
     [SerializeField] private AudioClip _mainMenuMusic;
-
+    [SerializeField] private GameObject _quitButton;
 
 
     private void Start()

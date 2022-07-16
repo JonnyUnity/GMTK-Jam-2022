@@ -17,8 +17,12 @@ public class CombatManager : MonoBehaviour
     [Header("Dice data")]
     [SerializeField] private FloorDice _dice;
 
+
+    private List<GameObject> _spawnedObjects;
+
     [Header("Event Channels")]
     [SerializeField] private EventChannelSO _startCombatChannelSO;
+    [SerializeField] private EventChannelSO _loadFloorChannelSO;
 
 
     private void OnEnable()
@@ -80,5 +84,18 @@ public class CombatManager : MonoBehaviour
 
     }
 
+
+    public void FloorCleared()
+    {
+
+        for (int i = _spawnedObjects.Count - 1; i >= 0; i--)
+        {
+            Destroy(_spawnedObjects[i]);
+        }
+        _spawnedObjects.Clear();
+
+        _loadFloorChannelSO.RaiseEvent();
+
+    }
 
 }
