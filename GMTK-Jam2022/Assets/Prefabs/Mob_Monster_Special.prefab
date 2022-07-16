@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 5179065609362209476}
   - component: {fileID: 6488521455938503194}
   - component: {fileID: 4356795907846671360}
+  - component: {fileID: 7119957462563928505}
   m_Layer: 0
   m_Name: Mob_Monster_Special
-  m_TagString: Untagged
+  m_TagString: SpMonster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,8 +77,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 6fd7fcc8a6ff84b4398f64d61c563135, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -125,7 +126,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.28, y: 1.28}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -146,6 +147,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65e81a9f57c953a49bd03ef47a311183, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  player: {fileID: 0}
-  monRigidbody: {fileID: 0}
+  speed: 5
+  player: {fileID: 1051786327533669984, guid: 6108be6711095dc45a0d0f546e986d37, type: 3}
+  monRigidbody: {fileID: 5179065609362209476}
+  projectile: {fileID: 8362372360304294050, guid: e12eaab8c4479c24d80d29f10a571597, type: 3}
+  fireRate: 5
+  health: 4
+--- !u!95 &7119957462563928505
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6172708983029244580}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: aa10a2911aefaac4bb38450eac2d0a45, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

@@ -2,30 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MobMonsterController : MonoBehaviour
+public class MobProjectile : MonoBehaviour
 {
-    public float speed;
     public GameObject player;
-    public Rigidbody2D monRigidbody;
+    public Rigidbody2D mbProjectile;
+    public float speed;
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        monRigidbody = GetComponent<Rigidbody2D>();
+        mbProjectile = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        MonsterAI();
+        FollowPlayer();
     }
 
-    void MonsterAI()
+    void FollowPlayer()
     {
         Vector2 playerPosition = player.GetComponent<PlayerCharacter>().GetPosition();
-        monRigidbody.velocity = Vector2.zero;
-        monRigidbody.position = Vector2.MoveTowards(monRigidbody.position, playerPosition, speed * Time.deltaTime);
-
+        mbProjectile.position = Vector2.MoveTowards(mbProjectile.position, playerPosition, speed * Time.deltaTime);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -33,11 +32,14 @@ public class MobMonsterController : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             player.GetComponent<PlayerCharacter>().Death();
+            Destroy(gameObject);
         }
     }
 
-    public void Death()
+    public void HitByPlProj()
     {
         Destroy(gameObject);
+
     }
+
 }

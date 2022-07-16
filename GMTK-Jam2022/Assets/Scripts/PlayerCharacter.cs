@@ -7,6 +7,8 @@ public class PlayerCharacter : MonoBehaviour
 {
     public Rigidbody2D playerBody;
     public float speed;
+    public GameObject projectile;
+    public float force;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,10 +39,7 @@ public class PlayerCharacter : MonoBehaviour
 
         }
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            GetComponentInChildren<Weapon>().Shoot(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-        }
+
     }
 
     void Stop()
@@ -67,7 +66,6 @@ public class PlayerCharacter : MonoBehaviour
 
         pivot.transform.rotation = Quaternion.Euler(0f, 0f, angle - 90);
         //Debug.Log(pivot.transform.rotation);
-
 
     }
 
