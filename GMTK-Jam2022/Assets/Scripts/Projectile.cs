@@ -11,19 +11,33 @@ public class Projectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        //sr.transform.rotation = transform.rotation;
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        transform.position += shootDirection * speed * Time.deltaTime;
-    }
 
-    public void MoveTo(Vector3 shootDir)
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        shootDirection = shootDir;
-
+        if (collision.gameObject.CompareTag("Monster"))
+        {
+            collision.gameObject.GetComponent<MobMonsterController>().Death();
+            Destroy(gameObject);
+        }
+        if (collision.gameObject.CompareTag("MProj"))
+        {
+            collision.gameObject.GetComponent<MobProjectile>().HitByPlProj();
+            Destroy(gameObject);
+        }
+        if (collision.gameObject.CompareTag("SpMonster"))
+        {
+            collision.gameObject.GetComponent<MobMonsterSpecial>().Damage();
+            Destroy(gameObject);
+        }
     }
+
 }

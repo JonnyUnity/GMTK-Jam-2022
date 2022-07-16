@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - Monster
+  - SpMonster
+  - MProj
   layers:
   - Default
   - TransparentFX

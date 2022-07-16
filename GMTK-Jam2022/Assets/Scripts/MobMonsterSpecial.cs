@@ -11,6 +11,7 @@ public class MobMonsterSpecial : MonoBehaviour
     bool canFire = true;
     public float fireRate = 5f;
     private float lastShot = 0;
+    public float health = 4f;
 
     // Start is called before the first frame update
     void Start()
@@ -79,4 +80,16 @@ public class MobMonsterSpecial : MonoBehaviour
 
     }
 
+    public void Damage()
+    {
+        health--;
+
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+
+        }
+
+
+    }
 }

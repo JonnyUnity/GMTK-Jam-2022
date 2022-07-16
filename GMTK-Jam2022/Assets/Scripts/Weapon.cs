@@ -6,7 +6,7 @@ public class Weapon : MonoBehaviour
 {
     public Transform firePoint;
     public GameObject projectile;
-
+    public float force;
 
 
     // Vector3 position;
@@ -19,14 +19,20 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetMouseButtonDown(0))
+        {
+            //GetComponentInChildren<Weapon>().Shoot(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            Shoot();
+        }
     }
 
-    public void Shoot(Vector3 cameraPoint)
+    public void Shoot()
     {
 
-        var spell = Instantiate(projectile, firePoint.position, Quaternion.identity);
-        Vector3 shootDir = cameraPoint - firePoint.position.normalized;
-        spell.GetComponent<Projectile>().MoveTo(shootDir);
+        GameObject spell = Instantiate(projectile, firePoint.position, firePoint.rotation);
+        Rigidbody2D rb = spell.GetComponent<Rigidbody2D>();
+        rb.AddForce(firePoint.up * force, ForceMode2D.Impulse);
+
+
     }
 }

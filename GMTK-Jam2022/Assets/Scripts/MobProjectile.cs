@@ -36,5 +36,10 @@ public class MobProjectile : MonoBehaviour
         }
     }
 
+    public void HitByPlProj()
+    {
+        Destroy(gameObject);
+
+    }
 
 }
