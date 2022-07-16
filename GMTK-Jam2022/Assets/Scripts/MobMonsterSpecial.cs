@@ -2,40 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-<<<<<<< HEAD
-public class MobProjectile : MonoBehaviour
-{
-    public GameObject player;
-    public Rigidbody2D mbProjectile;
-    public float speed;
-=======
 public class MobMonsterSpecial : MonoBehaviour
 {
     public float speed;
     public GameObject player;
     public Rigidbody2D monRigidbody;
     public GameObject projectile;
+    public Rigidbody2D mbProjectile;
+
     bool canFire = true;
     public float fireRate = 5f;
     private float lastShot = 0;
     public float health = 4f;
->>>>>>> will
+
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-<<<<<<< HEAD
+
         mbProjectile = GetComponent<Rigidbody2D>();
-=======
         monRigidbody = GetComponent<Rigidbody2D>();
->>>>>>> will
+
     }
 
     // Update is called once per frame
     void Update()
     {
-<<<<<<< HEAD
         FollowPlayer();
     }
 
@@ -43,7 +36,7 @@ public class MobMonsterSpecial : MonoBehaviour
     {
         Vector2 playerPosition = player.GetComponent<PlayerCharacter>().GetPosition();
         mbProjectile.position = Vector2.MoveTowards(mbProjectile.position, playerPosition, speed * Time.deltaTime);
-=======
+
         SpMobAI();
     }
 
@@ -70,7 +63,6 @@ public class MobMonsterSpecial : MonoBehaviour
         }
 
 
->>>>>>> will
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -78,7 +70,6 @@ public class MobMonsterSpecial : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             player.GetComponent<PlayerCharacter>().Death();
-<<<<<<< HEAD
             Destroy(gameObject);
         }
     }
@@ -89,9 +80,9 @@ public class MobMonsterSpecial : MonoBehaviour
 
     }
 
-=======
-        }
-    }
+
+        
+    
 
     private IEnumerator FireRate(float WaitTime)
     {
@@ -126,5 +117,5 @@ public class MobMonsterSpecial : MonoBehaviour
 
 
     }
->>>>>>> will
+
 }
