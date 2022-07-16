@@ -159,6 +159,8 @@ public class PlanningPhaseManager : MonoBehaviour
         _rerollPanel.SetActive(false);
         _goButton.SetActive(false);
 
+
+
         _startCombatChannelSO.RaiseEvent();
     }
 
