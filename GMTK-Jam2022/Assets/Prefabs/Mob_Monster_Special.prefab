@@ -133,7 +133,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 1.25, y: 1.25}
-  m_EdgeRadius: 0
+  m_EdgeRadius: 3
 --- !u!114 &4356795907846671360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,6 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65e81a9f57c953a49bd03ef47a311183, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  player: {fileID: 0}
-  monRigidbody: {fileID: 0}
+  speed: 5
+  player: {fileID: 1051786327533669984, guid: 6108be6711095dc45a0d0f546e986d37, type: 3}
+  monRigidbody: {fileID: 5179065609362209476}
+  projectile: {fileID: 8362372360304294050, guid: e12eaab8c4479c24d80d29f10a571597, type: 3}
