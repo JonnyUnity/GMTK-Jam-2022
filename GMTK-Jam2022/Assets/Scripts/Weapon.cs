@@ -7,7 +7,8 @@ public class Weapon : MonoBehaviour
     public Transform firePoint;
     public GameObject projectile;
     public float force;
-
+    public float fireRate = 1f;
+    private float lastShot = 0;
 
     // Vector3 position;
     // Start is called before the first frame update
@@ -28,11 +29,12 @@ public class Weapon : MonoBehaviour
 
     public void Shoot()
     {
+        if (Time.time > fireRate + lastShot)
+        {
+            GameObject spell = Instantiate(projectile, firePoint.position, firePoint.rotation);
+            Rigidbody2D rb = spell.GetComponent<Rigidbody2D>();
+            rb.AddForce(firePoint.up * force, ForceMode2D.Impulse);
 
-        GameObject spell = Instantiate(projectile, firePoint.position, firePoint.rotation);
-        Rigidbody2D rb = spell.GetComponent<Rigidbody2D>();
-        rb.AddForce(firePoint.up * force, ForceMode2D.Impulse);
-
-
+        }
     }
 }

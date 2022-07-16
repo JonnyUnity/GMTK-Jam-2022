@@ -51,6 +51,9 @@ public class MobMonsterSpecial : MonoBehaviour
 
     }
 
+
+
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -59,15 +62,7 @@ public class MobMonsterSpecial : MonoBehaviour
         }
     }
 
-    private IEnumerator FireRate(float WaitTime)
-    {
 
-
-
-        yield return new WaitForSeconds(WaitTime);
-        canFire = true;
-
-    }
 
     void Fire()
     {
