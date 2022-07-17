@@ -22,6 +22,8 @@ public class PlanningPhaseManager : MonoBehaviour
     [SerializeField] private GameObject _buttonContainer;
     [SerializeField] private GameObject _dicePanel;
 
+    [SerializeField] private GameObject _keyImage;
+
     private int _numDice;
 
 
@@ -60,6 +62,7 @@ public class PlanningPhaseManager : MonoBehaviour
         _dicePanel.SetActive(false);
         _buttonContainer.SetActive(false);
         _rerollPanel.SetActive(false);
+        _keyImage.SetActive(false);
     }
 
     private void LoadFloor()
@@ -67,6 +70,8 @@ public class PlanningPhaseManager : MonoBehaviour
         // get number of dice!
         _buttonContainer.SetActive(true);
         _rollButton.SetActive(true);
+        _keyImage.SetActive(true);
+
         _goButton.SetActive(false);
         _escapeWarning.SetActive(false);
 

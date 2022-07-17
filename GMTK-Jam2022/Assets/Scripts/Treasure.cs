@@ -6,6 +6,16 @@ public class Treasure : MonoBehaviour
 {
 
     [SerializeField] private GOEventChannelSO _removeObjectChannelSO;
+    [SerializeField] private AudioClip _openChestClip;
+
+    [SerializeField] private int _score = 500;
+
+    private AudioSource _audioSource;
+
+    private void Awake()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +33,8 @@ public class Treasure : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            _removeObjectChannelSO.RaiseEvent(gameObject, 500);
+            _audioSource.PlayOneShot(_openChestClip);
+            _removeObjectChannelSO.RaiseEvent(gameObject, _score);
         }
     }
 }

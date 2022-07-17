@@ -49,7 +49,7 @@ public class AudioManager : Singleton<AudioManager>
         _audioSource.Play();
         _audioSource.volume = 0;
 
-        _audioSource.DOFade(80f, fadeDuration);
+        _audioSource.DOFade(60f, fadeDuration);
 
 
     }
@@ -58,7 +58,6 @@ public class AudioManager : Singleton<AudioManager>
     {
         _audioSource.DOFade(0f, fadeDuration);
     }
-
 
 
 }
