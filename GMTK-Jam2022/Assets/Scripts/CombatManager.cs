@@ -23,6 +23,7 @@ public class CombatManager : MonoBehaviour
     [SerializeField] private GameObject _arenaObj;
     [SerializeField] private GameObject _walls;
     [SerializeField] private GameObject _gate;
+    [SerializeField] private GameObject _exitCollider; 
 
 
     private List<GameObject> _spawnedObjects;
@@ -76,7 +77,7 @@ public class CombatManager : MonoBehaviour
 
                     Debug.Log("SPAWN ELITE!");
 
-                    //newObj = Instantiate(_elitePrefab, _arenaObj.transform, false);
+                    newObj = Instantiate(_elitePrefab, _arenaObj.transform, false);
                     break;
                 case 2:
 
@@ -86,25 +87,26 @@ public class CombatManager : MonoBehaviour
                 case 3:
 
                     Debug.Log("SPAWN SKULL!");
-                    //newObj = Instantiate(_skullPrefab, _arenaObj.transform, false);
+                    newObj = Instantiate(_skullPrefab, _arenaObj.transform, false);
                     
                     break;
 
                 case 4:
 
                     Debug.Log("SPAWN SKELETON!");
-                   // newObj = Instantiate(_skeletonPrefab, _arenaObj.transform, false);
+                    newObj = Instantiate(_skeletonPrefab, _arenaObj.transform, false);
                     break;
 
                 case 5:
 
                     Debug.Log("SPAWN SKELETON2!");
-                    //newObj = Instantiate(_skeletonPrefab, _arenaObj.transform, false);
+                    newObj = Instantiate(_skeletonPrefab, _arenaObj.transform, false);
                     break;
 
                 case 6:
 
                     Debug.Log("SPAWN TREASURE!");
+                    newObj = Instantiate(_treasurePrefab, _arenaObj.transform, false);
                     break;
 
             }
@@ -160,6 +162,7 @@ public class CombatManager : MonoBehaviour
         //_loadFloorChannelSO.RaiseEvent();
 
         _gate.SetActive(true);
+        _exitCollider.SetActive(false);
 
     }
 
@@ -170,6 +173,7 @@ public class CombatManager : MonoBehaviour
             // now only the player, so open the gate!
             //_openGateChannelSO.RaiseEvent(true);
             _gate.SetActive(false);
+            _exitCollider.SetActive(true);
             _gateOpenChannelSO.RaiseEvent();
         }
     }
