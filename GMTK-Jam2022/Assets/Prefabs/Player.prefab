@@ -229,6 +229,7 @@ MonoBehaviour:
   projectile: {fileID: 8362372360304294050, guid: a6c61e0171016dd40b2981d9d44b66a0, type: 3}
   force: 10
   playerMod: {fileID: 0}
+  _playerDiedChannelSO: {fileID: 11400000, guid: ee770b1868d8b204eb96d1f412b5e670, type: 2}
 --- !u!95 &108927784802419690
 Animator:
   serializedVersion: 4

@@ -12,6 +12,7 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
+        AudioManager.Instance.FadeMusicIn(_mainMenuMusic, 1f);
 #if UNITY_WEBGL && !UNITY_EDITOR
         _quitButton.SetActive(false);
 #endif

@@ -28,6 +28,10 @@ public class DiceManager : MonoBehaviour
     [Header("Dice SO")]
     [SerializeField] private FloorDice _dice;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _diceRollClip;
+
 
     [Header("Dice Spawns")]
     [SerializeField] private Transform _spawnDieSpawn;
@@ -62,12 +66,6 @@ public class DiceManager : MonoBehaviour
         _diceObjects.Clear();
     }
 
-
-
-    //private void Start()
-    //{
-    //    Setup();
-    //}
 
     public void Setup()
     {
@@ -107,12 +105,6 @@ public class DiceManager : MonoBehaviour
     }
 
 
-    //private IEnumerator SetupWithDelay()
-    //{
-    //    Setup();
-    //    yield return new WaitForSeconds(0.5f);
-    //}
-
     private IEnumerator RollDiceCoroutine()
     {
 
@@ -120,7 +112,10 @@ public class DiceManager : MonoBehaviour
         {
             obj.RollDie();
         }
-
+        if (_diceRollClip != null)
+        {
+            _audioSource.PlayOneShot(_diceRollClip);
+        }
 
         yield return new WaitUntil(() => GotAllDiceData());
 

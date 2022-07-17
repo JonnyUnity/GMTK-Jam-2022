@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Treasure : MonoBehaviour
 {
+
+    [SerializeField] private GOEventChannelSO _removeObjectChannelSO;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +23,7 @@ public class Treasure : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            // DO Things
+            _removeObjectChannelSO.RaiseEvent(gameObject, 500);
         }
     }
 }

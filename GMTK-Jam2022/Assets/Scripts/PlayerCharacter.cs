@@ -11,6 +11,8 @@ public class PlayerCharacter : MonoBehaviour
     public float force;
     public SpriteRenderer playerMod;
 
+    [SerializeField] private EventChannelSO _playerDiedChannelSO;
+
 
     private void Awake()
     {
@@ -98,7 +100,8 @@ public class PlayerCharacter : MonoBehaviour
 
     public void Death()
     {
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        _playerDiedChannelSO.RaiseEvent();
     }
 
 

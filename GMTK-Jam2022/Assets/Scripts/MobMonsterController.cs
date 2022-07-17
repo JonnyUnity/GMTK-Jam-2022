@@ -8,6 +8,8 @@ public class MobMonsterController : MonoBehaviour
     public GameObject player;
     public Rigidbody2D monRigidbody;
     public SpriteRenderer monSprite;
+
+
     // Start is called before the first frame update
     void Start()
     {

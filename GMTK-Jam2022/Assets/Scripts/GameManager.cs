@@ -151,6 +151,17 @@ public class GameManager : Singleton<GameManager>
 
     }
 
+
+    public void LoadGameOver()
+    {
+
+        _gameOverChannelSO.RaiseEvent();
+        _sceneIndex = 4;
+
+        StartCoroutine(UnloadPreviousScene());
+
+    }
+
     public int GetNumDice()
     {
         return _NumDiceForFloor[_floor];
@@ -170,10 +181,7 @@ public class GameManager : Singleton<GameManager>
         _score += 100;
         if (_floor >= _maxFloors)
         {
-            _gameOverChannelSO.RaiseEvent();
-            _sceneIndex = 4;
-
-            StartCoroutine(UnloadPreviousScene());
+            LoadGameOver();
         }
         else
         {

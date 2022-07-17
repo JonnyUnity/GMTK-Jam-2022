@@ -23,11 +23,17 @@ public class CombatManager : MonoBehaviour
     [SerializeField] private GameObject _arenaObj;
     [SerializeField] private GameObject _walls;
     [SerializeField] private GameObject _gate;
-    [SerializeField] private GameObject _exitCollider; 
+    [SerializeField] private GameObject _exitCollider;
 
 
+    private GameObject _playerObj;
     private List<GameObject> _spawnedObjects;
-    
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _spawnObjectsClip;
+    [SerializeField] private AudioClip _gateOpeningClip;
+
 
     [Header("Event Channels")]
     [SerializeField] private EventChannelSO _startCombatChannelSO;
@@ -35,6 +41,9 @@ public class CombatManager : MonoBehaviour
     [SerializeField] private EventChannelSO _loadFloorChannelSO;
     [SerializeField] private EventChannelSO _checkFloorCompleteChannelSO;
     [SerializeField] private EventChannelSO _gateOpenChannelSO;
+    [SerializeField] private GOEventChannelSO _removeObjectChannelSO;
+    [SerializeField] private EventChannelSO _playerDiedChannelSO;
+    [SerializeField] private EventChannelSO _gameOverChannelSO;
 
 
     private WaitForSeconds _pauseBetweenFloors = new WaitForSeconds(1f);
@@ -45,7 +54,8 @@ public class CombatManager : MonoBehaviour
         _startCombatChannelSO.OnEventRaised += SpawnLevelObjects;
         _exitFloorChannelSO.OnEventRaised += FloorCleared;
         _checkFloorCompleteChannelSO.OnEventRaised += CheckFloorCleared;
-        //_openGateChannelSO.OnEventRaised += OpenGate;
+        _removeObjectChannelSO.OnEventRaised += RemoveSpawnedObject;
+        _playerDiedChannelSO.OnEventRaised += PlayerDied;
     }
 
 
@@ -54,15 +64,42 @@ public class CombatManager : MonoBehaviour
         _startCombatChannelSO.OnEventRaised -= SpawnLevelObjects;
         _exitFloorChannelSO.OnEventRaised -= FloorCleared;
         _checkFloorCompleteChannelSO.OnEventRaised -= CheckFloorCleared;
-        //_openGateChannelSO.OnEventRaised -= OpenGate;
+        _removeObjectChannelSO.OnEventRaised -= RemoveSpawnedObject;
+        _playerDiedChannelSO.OnEventRaised -= PlayerDied;
+    }
+
+    private void PlayerDied()
+    {
+
+        StartCoroutine(PlayerDiedCoroutine());
+
+
+    }
+
+    private IEnumerator PlayerDiedCoroutine()
+    {
+        // pause before changing scenes when the player dies...
+        yield return new WaitForSeconds(2f);
+        GameManager.Instance.LoadGameOver();
     }
 
 
+    private void RemoveSpawnedObject(GameObject obj, int score)
+    {
+        if (_spawnedObjects.Contains(obj))
+        {
+            GameManager.Instance.AddScore(score);
+            _spawnedObjects.Remove(obj);
+            Destroy(obj);
+            CheckFloorCleared();
+        }
+    }
 
     private void SpawnLevelObjects()
     {
 
         _spawnedObjects = new List<GameObject>();
+        _audioSource.PlayOneShot(_spawnObjectsClip);
 
         foreach (var die in _dice.Dice)
         {
@@ -123,13 +160,12 @@ public class CombatManager : MonoBehaviour
         Debug.Log("SPAWN PLAYER! " + _dice.SpawnDie.Data.Transform.position);
         Debug.Log("ARENA TRANSFORM " + _arenaObj.transform.position);
         var playerTransform = _dice.SpawnDie.Data.Transform;
-        var playerObj = Instantiate(_playerPrefab, _arenaObj.transform, false);
+        _playerObj = Instantiate(_playerPrefab, _arenaObj.transform, false);
 
-        playerObj.transform.position = new Vector3(playerTransform.position.x, playerTransform.position.y, 0);
+        _playerObj.transform.position = new Vector3(playerTransform.position.x, playerTransform.position.y, 0);
 
-        Debug.Log(playerObj.transform.position);
-
-        _spawnedObjects.Add(playerObj);
+        
+        Debug.Log(_playerObj.transform.position);
 
         _walls.SetActive(true);
         //_gate.SetActive(true);
@@ -155,6 +191,8 @@ public class CombatManager : MonoBehaviour
             Destroy(_spawnedObjects[i]);
         }
         _spawnedObjects.Clear();
+        Destroy(_playerObj);
+
         _walls.SetActive(false);
 
         yield return _pauseBetweenFloors;
@@ -168,10 +206,11 @@ public class CombatManager : MonoBehaviour
 
     private void CheckFloorCleared()
     {
-        if (_spawnedObjects.Count == 1)
+        if (_spawnedObjects.Count == 0)
         {
             // now only the player, so open the gate!
-            //_openGateChannelSO.RaiseEvent(true);
+            _audioSource.PlayOneShot(_gateOpeningClip);
+
             _gate.SetActive(false);
             _exitCollider.SetActive(true);
             _gateOpenChannelSO.RaiseEvent();
