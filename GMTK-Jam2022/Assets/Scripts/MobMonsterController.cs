@@ -8,13 +8,15 @@ public class MobMonsterController : MonoBehaviour
     public GameObject player;
     public Rigidbody2D monRigidbody;
     public SpriteRenderer monSprite;
-
-
+    AudioSource walk;
+    private int score;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         monRigidbody = GetComponent<Rigidbody2D>();
+        walk = GetComponent<AudioSource>();
+        walk.Play();
     }
 
     // Update is called once per frame
@@ -25,29 +27,41 @@ public class MobMonsterController : MonoBehaviour
 
     void MonsterAI()
     {
-        Vector2 playerPosition = player.GetComponent<PlayerCharacter>().GetPosition();
-        monRigidbody.velocity = Vector2.zero;
-        monRigidbody.position = Vector2.MoveTowards(monRigidbody.position, playerPosition, speed * Time.deltaTime);
-        float angle;
-        Vector3 playerLook = playerPosition;
-
-        Vector3 target = playerLook - transform.position;
-        target.Normalize();
-        angle = Mathf.Atan2(target.y, target.x) * Mathf.Rad2Deg;
-
-        if (angle > 130 && angle < 179)
+        if (player == null)
         {
-            monSprite.flipX = false;
-        }
-        else if (angle > -179 && angle < -130)
-        {
-            monSprite.flipX = false;
+            monRigidbody.velocity = Vector2.zero;
+            walk.Stop();
         }
         else
         {
-            monSprite.flipX = true;
+            Vector2 playerPosition = player.GetComponent<PlayerCharacter>().GetPosition();
+            monRigidbody.velocity = Vector2.zero;
+            monRigidbody.position = Vector2.MoveTowards(monRigidbody.position, playerPosition, speed * Time.deltaTime);
+            float angle;
+            Vector3 playerLook = playerPosition;
+
+            Vector3 target = playerLook - transform.position;
+            target.Normalize();
+            angle = Mathf.Atan2(target.y, target.x) * Mathf.Rad2Deg;
+
+            if (angle > 130 && angle < 179)
+            {
+                monSprite.flipX = false;
+            }
+            else if (angle > -179 && angle < -130)
+            {
+                monSprite.flipX = false;
+            }
+            else
+            {
+                monSprite.flipX = true;
+            }
+
         }
-        monRigidbody.transform.rotation = Quaternion.Euler(monRigidbody.transform.rotation.x, monRigidbody.transform.rotation.y, 0f);
+
+
+
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

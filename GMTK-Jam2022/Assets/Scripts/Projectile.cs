@@ -7,11 +7,13 @@ public class Projectile : MonoBehaviour
     public float speed;
     public Rigidbody2D projectRigid;
     private Vector3 shootDirection;
-
+    AudioSource hitEffect;
+    public AudioClip clip;
     void Start()
     {
 
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        hitEffect = GetComponent<AudioSource>();
         //sr.transform.rotation = transform.rotation;
     }
 
@@ -29,22 +31,29 @@ public class Projectile : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
+        AudioSource.PlayClipAtPoint(clip, collision.gameObject.transform.position, 1f);
 
         if (collision.gameObject.CompareTag("Monster"))
         {
+
             collision.gameObject.GetComponent<MobMonsterController>().Death();
-            Destroy(gameObject);
+
+
         }
         if (collision.gameObject.CompareTag("MProj"))
         {
+
             collision.gameObject.GetComponent<MobProjectile>().HitByPlProj();
-            Destroy(gameObject);
+
+
         }
         if (collision.gameObject.CompareTag("SpMonster"))
         {
+
             collision.gameObject.GetComponent<MobMonsterSpecial>().Damage();
-            Destroy(gameObject);
+
         }
+        Destroy(gameObject);
     }
 
 }
