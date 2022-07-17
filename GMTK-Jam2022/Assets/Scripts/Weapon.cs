@@ -26,6 +26,9 @@ public class Weapon : MonoBehaviour
         if (EventSystem.current.IsPointerOverGameObject())
             return;
 
+        if (GameManager.Instance.State == GameState.PLAYER_DEAD)
+            return;
+
         if (Input.GetMouseButtonDown(0))
         {
 

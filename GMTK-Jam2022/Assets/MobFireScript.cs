@@ -11,6 +11,13 @@ public class MobFireScript : MonoBehaviour
     public GameObject projectile;
     bool canFire;
 
+    private Transform _transform;
+
+    private void Awake()
+    {
+        _transform = transform;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +38,8 @@ public class MobFireScript : MonoBehaviour
         if (Time.time > fireRate + lastShot)
         {
 
-            Vector2 spawnPos = new Vector2(monRigidbody.position.x, monRigidbody.position.y - 1f);
+            //Vector2 spawnPos = new Vector2(monRigidbody.position.x, monRigidbody.position.y - 1f);
+            Vector2 spawnPos = new Vector2(_transform.position.x, _transform.position.y);
             fireSpell.Play();
             var spellMon = Instantiate(projectile, spawnPos, Quaternion.identity, gameObject.transform);
 

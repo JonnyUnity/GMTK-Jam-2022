@@ -126,6 +126,9 @@ public class PlayerCharacter : MonoBehaviour
 
     public void Death()
     {
+        if (GameManager.Instance.State == GameState.PLAYER_DEAD)
+            return;
+
         AudioManager.Instance.FadeMusicOut(0.1f);
         walk.PlayOneShot(_deathSoundClip);
 

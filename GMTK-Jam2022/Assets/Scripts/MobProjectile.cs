@@ -51,7 +51,6 @@ public class MobProjectile : MonoBehaviour
 
             player.GetComponent<PlayerCharacter>().Death();
 
-
         }
         Destroy(gameObject);
 

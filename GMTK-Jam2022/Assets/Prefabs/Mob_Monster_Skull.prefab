@@ -153,7 +153,7 @@ MonoBehaviour:
   monRigidbody: {fileID: 5179065609362209476}
   monSprite: {fileID: 1590007824146862293}
   _removeObjectChannelSO: {fileID: 11400000, guid: afd05c9650d816c4cbd7940be77ebc55, type: 2}
-  _score: 100
+  _score: 200
 --- !u!95 &1906887047792425503
 Animator:
   serializedVersion: 4

@@ -30,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6172708983029244580}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.8441901, y: -1.030442, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -152,10 +152,7 @@ MonoBehaviour:
   speed: 1
   player: {fileID: 1051786327533669984, guid: 6108be6711095dc45a0d0f546e986d37, type: 3}
   monRigidbody: {fileID: 5179065609362209476}
-  projectile: {fileID: 8362372360304294050, guid: e12eaab8c4479c24d80d29f10a571597, type: 3}
-  fireRate: 5
   health: 4
-  fireSpell: {fileID: 0}
   floatingHum: {fileID: 1155107388899927523}
   _removeObjectChannelSO: {fileID: 11400000, guid: afd05c9650d816c4cbd7940be77ebc55, type: 2}
   _score: 1000
