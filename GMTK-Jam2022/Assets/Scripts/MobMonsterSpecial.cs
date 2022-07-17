@@ -9,7 +9,7 @@ public class MobMonsterSpecial : MonoBehaviour
     public Rigidbody2D monRigidbody;
     public GameObject projectile;
     bool canFire = true;
-    public float fireRate = 5f;
+    public float fireRate = 7f;
     private float lastShot = 0;
     public float health = 4f;
     private int score;
@@ -47,10 +47,11 @@ public class MobMonsterSpecial : MonoBehaviour
             Vector2 playerPosition = player.GetComponent<PlayerCharacter>().GetPosition();
             monRigidbody.velocity = Vector2.zero;
 
-            if (Vector2.Distance(player.GetComponent<PlayerCharacter>().GetPosition(), monRigidbody.position) >= 10)
+            if (Vector2.Distance(player.GetComponent<PlayerCharacter>().GetPosition(), monRigidbody.position) >= 3)
             {
                 monRigidbody.velocity = Vector2.zero;
-                monRigidbody.position = Vector2.MoveTowards(monRigidbody.position, playerPosition, speed * Time.deltaTime);
+                Vector2 abovePl = new Vector2(playerPosition.x, playerPosition.y + 2.5f);
+                monRigidbody.position = Vector2.MoveTowards(monRigidbody.position, abovePl, speed * Time.deltaTime);
                 //Debug.Log("Moving");
             }
             else
@@ -86,7 +87,11 @@ public class MobMonsterSpecial : MonoBehaviour
     {
         if (Time.time > fireRate + lastShot)
         {
-            Vector2 spawnPos = new Vector2(monRigidbody.position.x, monRigidbody.position.y + 1f);
+
+
+
+
+            Vector2 spawnPos = new Vector2(monRigidbody.position.x, monRigidbody.position.y - 1f);
             fireSpell.Play();
             var spellMon = Instantiate(projectile, spawnPos, Quaternion.identity, gameObject.transform);
             //spellMon.transform.parent = gameObject.transform;
