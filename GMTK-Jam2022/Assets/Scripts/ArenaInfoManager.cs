@@ -33,6 +33,11 @@ public class ArenaInfoManager : MonoBehaviour
         _gameOverChannelSO.OnEventRaised -= HideInfo;
     }
 
+    private void Awake()
+    {
+        HideInfo();
+    }
+
     private void HideInfo()
     {
         _infoPanel.SetActive(false);
@@ -41,7 +46,7 @@ public class ArenaInfoManager : MonoBehaviour
     private void UpdateScoreText()
     {
         int score = GameManager.Instance.Score;
-        _scoreText.text = $"SCORE: {score}";
+        _scoreText.text = $"SCORE:{Environment.NewLine}{score}";
     }
 
     private void UpdateFloorText()
@@ -49,7 +54,7 @@ public class ArenaInfoManager : MonoBehaviour
         _infoPanel.SetActive(true);
 
         int floor = GameManager.Instance.Floor;
-        _floorText.text = $"FLOOR: {floor}";
+        _floorText.text = $"FLOOR:{Environment.NewLine}{floor}";
 
         UpdateScoreText();
 

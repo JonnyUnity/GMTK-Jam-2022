@@ -6,6 +6,7 @@ public class MainMenu : MonoBehaviour
 {
 
     [SerializeField] private AudioClip _mainMenuMusic;
+    [SerializeField] private GameObject _credits;
     [SerializeField] private GameObject _quitButton;
 
 
@@ -22,6 +23,17 @@ public class MainMenu : MonoBehaviour
         GameManager.Instance.StartGame();
     }
 
+
+    public void Credits()
+    {
+        _credits.SetActive(true);
+    }
+
+
+    public void CloseCredits()
+    {
+        _credits.SetActive(false);
+    }
 
 
     public void QuitGame()

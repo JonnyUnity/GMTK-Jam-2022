@@ -225,7 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerBody: {fileID: 5561879930538144037}
-  speed: 0.5
+  speed: 30
   projectile: {fileID: 8362372360304294050, guid: a6c61e0171016dd40b2981d9d44b66a0, type: 3}
   force: 10
   playerMod: {fileID: 0}

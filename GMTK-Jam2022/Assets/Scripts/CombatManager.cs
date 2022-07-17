@@ -33,7 +33,7 @@ public class CombatManager : MonoBehaviour
     [SerializeField] private EventChannelSO _exitFloorChannelSO;
     [SerializeField] private EventChannelSO _loadFloorChannelSO;
     [SerializeField] private EventChannelSO _checkFloorCompleteChannelSO;
-    //[SerializeField] private BoolEventChannelSO _openGateChannelSO;
+    [SerializeField] private EventChannelSO _gateOpenChannelSO;
 
 
     private WaitForSeconds _pauseBetweenFloors = new WaitForSeconds(1f);
@@ -170,6 +170,7 @@ public class CombatManager : MonoBehaviour
             // now only the player, so open the gate!
             //_openGateChannelSO.RaiseEvent(true);
             _gate.SetActive(false);
+            _gateOpenChannelSO.RaiseEvent();
         }
     }
 

@@ -17,6 +17,8 @@ public class PlanningPhaseManager : MonoBehaviour
     [SerializeField] private GameObject _rerollButton;
     [SerializeField] private TextMeshProUGUI _remainingText;
 
+    [SerializeField] private GameObject _escapeWarning;
+
     [SerializeField] private GameObject _buttonContainer;
     [SerializeField] private GameObject _dicePanel;
 
@@ -51,6 +53,8 @@ public class PlanningPhaseManager : MonoBehaviour
         _gameOverChannelSO.OnEventRaised -= HideControls;
     }
 
+    
+
     private void HideControls()
     {
         _dicePanel.SetActive(false);
@@ -64,6 +68,7 @@ public class PlanningPhaseManager : MonoBehaviour
         _buttonContainer.SetActive(true);
         _rollButton.SetActive(true);
         _goButton.SetActive(false);
+        _escapeWarning.SetActive(false);
 
         _dicePanel.SetActive(true);
         //_remainingText.gameObject.SetActive(false);
@@ -106,8 +111,10 @@ public class PlanningPhaseManager : MonoBehaviour
 
     private void Awake()
     {
-        _buttonContainer.SetActive(false);
-        _dicePanel.SetActive(false);
+        //_buttonContainer.SetActive(false);
+        //_dicePanel.SetActive(false);
+
+        HideControls();
     }
 
     // Start is called before the first frame update

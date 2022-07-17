@@ -15,7 +15,7 @@ public class InitlializationLoader : MonoBehaviour
 
     private void ManagersLoaded(AsyncOperation obj)
     {
-
+        GameManager.Instance.LoadMainMenu();
     }
 
 
