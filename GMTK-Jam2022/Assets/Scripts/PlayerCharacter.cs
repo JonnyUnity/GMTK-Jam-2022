@@ -10,6 +10,13 @@ public class PlayerCharacter : MonoBehaviour
     public GameObject projectile;
     public float force;
     public SpriteRenderer playerMod;
+
+
+    private void Awake()
+    {
+        playerMod = GetComponent<SpriteRenderer>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
