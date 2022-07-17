@@ -7,13 +7,11 @@ public class MobMonsterSpecial : MonoBehaviour
     public float speed;
     public GameObject player;
     public Rigidbody2D monRigidbody;
-    public GameObject projectile;
-    bool canFire = true;
-    public float fireRate = 7f;
-    private float lastShot = 0;
+
+
     public float health = 4f;
     private int score;
-    public AudioSource fireSpell, floatingHum;
+    public AudioSource floatingHum;
 
 
     [SerializeField] private GOEventChannelSO _removeObjectChannelSO;
@@ -32,6 +30,7 @@ public class MobMonsterSpecial : MonoBehaviour
     void Update()
     {
         SpMobAI();
+
     }
 
     void SpMobAI()
@@ -47,22 +46,20 @@ public class MobMonsterSpecial : MonoBehaviour
             Vector2 playerPosition = player.GetComponent<PlayerCharacter>().GetPosition();
             monRigidbody.velocity = Vector2.zero;
 
-            if (Vector2.Distance(player.GetComponent<PlayerCharacter>().GetPosition(), monRigidbody.position) >= 3)
+            if (Vector2.Distance(player.GetComponent<PlayerCharacter>().GetPosition(), monRigidbody.position) >= 0.5)
             {
                 monRigidbody.velocity = Vector2.zero;
                 Vector2 abovePl = new Vector2(playerPosition.x, playerPosition.y + 2.5f);
                 monRigidbody.position = Vector2.MoveTowards(monRigidbody.position, abovePl, speed * Time.deltaTime);
-                //Debug.Log("Moving");
+
             }
             else
             {
                 monRigidbody.velocity = Vector2.zero;
 
-                Fire();
 
-                //StartCoroutine(FireRate(5f));
 
-                // Debug.Log("Shooting");
+
             }
         }
 
@@ -83,22 +80,7 @@ public class MobMonsterSpecial : MonoBehaviour
 
 
 
-    void Fire()
-    {
-        if (Time.time > fireRate + lastShot)
-        {
 
-
-
-
-            Vector2 spawnPos = new Vector2(monRigidbody.position.x, monRigidbody.position.y - 1f);
-            fireSpell.Play();
-            var spellMon = Instantiate(projectile, spawnPos, Quaternion.identity, gameObject.transform);
-            //spellMon.transform.parent = gameObject.transform;
-            lastShot = Time.time;
-        }
-
-    }
 
     public void Damage()
     {
