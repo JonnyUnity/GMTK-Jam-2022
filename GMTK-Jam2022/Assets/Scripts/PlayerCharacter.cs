@@ -9,6 +9,7 @@ public class PlayerCharacter : MonoBehaviour
     public float speed;
     public GameObject projectile;
     public float force;
+    public SpriteRenderer playerMod;
     // Start is called before the first frame update
     void Start()
     {
@@ -64,8 +65,21 @@ public class PlayerCharacter : MonoBehaviour
 
         angle = Mathf.Atan2(target.y, target.x) * Mathf.Rad2Deg;
 
+        if (angle > 130 && angle < 179)
+        {
+            playerMod.flipX = false;
+        }
+        else if (angle > -179 && angle < -130)
+        {
+            playerMod.flipX = false;
+        }
+        else
+        {
+            playerMod.flipX = true;
+        }
+
         pivot.transform.rotation = Quaternion.Euler(0f, 0f, angle - 90);
-        //Debug.Log(pivot.transform.rotation);
+
 
     }
 

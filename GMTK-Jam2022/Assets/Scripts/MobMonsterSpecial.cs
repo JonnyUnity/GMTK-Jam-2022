@@ -8,35 +8,21 @@ public class MobMonsterSpecial : MonoBehaviour
     public GameObject player;
     public Rigidbody2D monRigidbody;
     public GameObject projectile;
-    public Rigidbody2D mbProjectile;
-
     bool canFire = true;
     public float fireRate = 5f;
     private float lastShot = 0;
     public float health = 4f;
 
-
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-
-        mbProjectile = GetComponent<Rigidbody2D>();
         monRigidbody = GetComponent<Rigidbody2D>();
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        FollowPlayer();
-    }
-
-    void FollowPlayer()
-    {
-        Vector2 playerPosition = player.GetComponent<PlayerCharacter>().GetPosition();
-        mbProjectile.position = Vector2.MoveTowards(mbProjectile.position, playerPosition, speed * Time.deltaTime);
-
         SpMobAI();
     }
 
@@ -65,41 +51,26 @@ public class MobMonsterSpecial : MonoBehaviour
 
     }
 
+
+
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
             player.GetComponent<PlayerCharacter>().Death();
-            Destroy(gameObject);
         }
     }
 
-    public void HitByPlProj()
-    {
-        Destroy(gameObject);
 
-    }
-
-
-        
-    
-
-    private IEnumerator FireRate(float WaitTime)
-    {
-
-
-
-        yield return new WaitForSeconds(WaitTime);
-        canFire = true;
-
-    }
 
     void Fire()
     {
         if (Time.time > fireRate + lastShot)
         {
+            Vector2 spawnPos = new Vector2(monRigidbody.position.x, monRigidbody.position.y + 1f);
 
-            Instantiate(projectile, monRigidbody.position, Quaternion.identity);
+            Instantiate(projectile, spawnPos, Quaternion.identity);
             lastShot = Time.time;
         }
 
@@ -117,5 +88,4 @@ public class MobMonsterSpecial : MonoBehaviour
 
 
     }
-
 }
