@@ -28,6 +28,9 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private int _maxFloors = 10;
 
 
+    public GameState State { get; private set; }
+
+
     public int Floor
     {
         get
@@ -145,11 +148,17 @@ public class GameManager : Singleton<GameManager>
         _floor = 1;
         _numRerolls = 3;
         _score = 0;
+        State = GameState.PLAYING;
 
         _loadFloorChannelSO.RaiseEvent();
         return _numDice;
                
 
+    }
+
+    public void PlayerHasDied()
+    {
+        State = GameState.PLAYER_DEAD;
     }
 
 
@@ -201,4 +210,10 @@ public class GameManager : Singleton<GameManager>
     }
 
 
+}
+
+public enum GameState
+{
+    PLAYING,
+    PLAYER_DEAD
 }

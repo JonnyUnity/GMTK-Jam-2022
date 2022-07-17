@@ -31,13 +31,22 @@ public class MobMonsterController : MonoBehaviour
 
     void MonsterAI()
     {
-        if (player == null)
+        if (GameManager.Instance.State == GameState.PLAYER_DEAD)
         {
             monRigidbody.velocity = Vector2.zero;
             walk.Stop();
+            return;
         }
-        else
-        {
+            
+
+
+        //if (player == null)
+        //{
+        //    monRigidbody.velocity = Vector2.zero;
+        //    walk.Stop();
+        //}
+        //else
+        //{
             Vector2 playerPosition = player.GetComponent<PlayerCharacter>().GetPosition();
             monRigidbody.velocity = Vector2.zero;
             monRigidbody.position = Vector2.MoveTowards(monRigidbody.position, playerPosition, speed * Time.deltaTime);
@@ -61,7 +70,7 @@ public class MobMonsterController : MonoBehaviour
                 monSprite.flipX = true;
             }
 
-        }
+        //}
 
 
 

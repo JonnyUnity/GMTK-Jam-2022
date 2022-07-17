@@ -13,7 +13,7 @@ public class MobMonsterSpecial : MonoBehaviour
     private float lastShot = 0;
     public float health = 4f;
     private int score;
-    private AudioSource fireSpell, floatingHum;
+    public AudioSource fireSpell, floatingHum;
 
 
     [SerializeField] private GOEventChannelSO _removeObjectChannelSO;

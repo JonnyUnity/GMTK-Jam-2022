@@ -35,6 +35,9 @@ public class AudioManager : Singleton<AudioManager>
 
     public void FadeMusicIn(AudioClip musicClip, float fadeDuration)
     {
+        if (_audioSource == null)
+            return;
+
         if (_audioSource.isPlaying && _audioSource.clip.name == musicClip.name)
             return;
 

@@ -80,7 +80,7 @@ public class CombatManager : MonoBehaviour
     private IEnumerator PlayerDiedCoroutine()
     {
         // pause before changing scenes when the player dies...
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         GameManager.Instance.LoadGameOver();
     }
 

@@ -13,6 +13,14 @@ public class PlayerCharacter : MonoBehaviour
     public AudioSource walk;
     bool isMoving;
 
+
+    [SerializeField] private EventChannelSO _playerDiedChannelSO;
+
+
+    [Header("Audio")]
+    [SerializeField] private AudioClip _deathSoundClip;
+
+
     private void Awake()
     {
         playerMod = GetComponent<SpriteRenderer>();
@@ -115,7 +123,11 @@ public class PlayerCharacter : MonoBehaviour
 
     public void Death()
     {
-        Destroy(gameObject);
+
+        walk.PlayOneShot(_deathSoundClip);
+
+        GameManager.Instance.PlayerHasDied();
+        _playerDiedChannelSO.RaiseEvent();
     }
 
 }

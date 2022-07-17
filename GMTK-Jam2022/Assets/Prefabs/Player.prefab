@@ -231,6 +231,8 @@ MonoBehaviour:
   force: 10
   playerMod: {fileID: 2008762177388573020}
   walk: {fileID: 1489550990205048489}
+  _playerDiedChannelSO: {fileID: 11400000, guid: ee770b1868d8b204eb96d1f412b5e670, type: 2}
+  _deathSoundClip: {fileID: 8300000, guid: bd8d0e7a23945ee4a9a2aaf025f92766, type: 3}
 --- !u!95 &108927784802419690
 Animator:
   serializedVersion: 4
@@ -260,7 +262,7 @@ AudioSource:
   m_GameObject: {fileID: 1051786327533669984}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -8663723115981920311, guid: 7aff6e1eb6e75e647b64429c10e239fa, type: 2}
   m_audioClip: {fileID: 8300000, guid: 970f343823c546540a23bf6dcdd89cf5, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
