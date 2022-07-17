@@ -8,13 +8,17 @@ public class MobProjectile : MonoBehaviour
     public Rigidbody2D mbProjectile;
     public float speed;
     public float projDecay;
+    AudioSource hitEffect;
+    public AudioClip clip;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         mbProjectile = GetComponent<Rigidbody2D>();
+        hitEffect = GetComponent<AudioSource>();
         projDecay = Time.time + 2f;
+
     }
 
     // Update is called once per frame
@@ -40,9 +44,13 @@ public class MobProjectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        AudioSource.PlayClipAtPoint(clip, collision.transform.position, 1f);
+
         if (collision.gameObject.CompareTag("Player"))
         {
+            hitEffect.Play();
             player.GetComponent<PlayerCharacter>().Death();
+
             Destroy(gameObject);
         }
     }

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Treasure : MonoBehaviour
 {
+
+    private int score;
+    AudioSource openChest;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +23,7 @@ public class Treasure : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            openChest.Play();
             // DO Things
         }
     }

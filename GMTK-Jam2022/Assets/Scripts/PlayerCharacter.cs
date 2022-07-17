@@ -10,7 +10,8 @@ public class PlayerCharacter : MonoBehaviour
     public GameObject projectile;
     public float force;
     public SpriteRenderer playerMod;
-
+    public AudioSource walk;
+    bool isMoving;
 
     private void Awake()
     {
@@ -20,6 +21,7 @@ public class PlayerCharacter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //walk.Play();
 
     }
 
@@ -41,11 +43,16 @@ public class PlayerCharacter : MonoBehaviour
 
         playerBody.AddForce(moveDirection * speed);
 
-        if (Input.anyKeyDown == false)
-        {
-            Stop();
+        //walk.Play();
 
-        }
+
+        if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0) { isMoving = true; } else { isMoving = false; }
+        if (isMoving && !walk.isPlaying) { walk.Play(); }
+        if (!isMoving) { walk.Stop(); }
+
+        if (Input.anyKeyDown == false) { Stop(); }
+
+
 
 
     }
@@ -100,6 +107,5 @@ public class PlayerCharacter : MonoBehaviour
     {
         Destroy(gameObject);
     }
-
 
 }
