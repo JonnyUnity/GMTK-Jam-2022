@@ -1,5 +1,6 @@
-A:\Dev\GMTK-Jam-2022\GMTK-Jam2022\Temp\Bin\Debug\Assembly-CSharp.dll
-A:\Dev\GMTK-Jam-2022\GMTK-Jam2022\Temp\Bin\Debug\Assembly-CSharp.pdb
+A:\Dev\GMTK-Jam-2022\GMTK-Jam2022\Temp\Bin\Debug\Assembly-CSharp-firstpass.dll
+A:\Dev\GMTK-Jam-2022\GMTK-Jam2022\Temp\Bin\Debug\Assembly-CSharp-firstpass.pdb
+A:\Dev\GMTK-Jam-2022\GMTK-Jam2022\Temp\Bin\Debug\DOTween.dll
 A:\Dev\GMTK-Jam-2022\GMTK-Jam2022\Temp\Bin\Debug\Microsoft.Win32.Primitives.dll
 A:\Dev\GMTK-Jam-2022\GMTK-Jam2022\Temp\Bin\Debug\mscorlib.dll
 A:\Dev\GMTK-Jam-2022\GMTK-Jam2022\Temp\Bin\Debug\netstandard.dll
@@ -339,6 +340,7 @@ A:\Dev\GMTK-Jam-2022\GMTK-Jam2022\Temp\Bin\Debug\UnityEditor.UIElementsSamplesMo
 A:\Dev\GMTK-Jam-2022\GMTK-Jam2022\Temp\Bin\Debug\UnityEditor.UIServiceModule.xml
 A:\Dev\GMTK-Jam-2022\GMTK-Jam2022\Temp\Bin\Debug\UnityEditor.UnityConnectModule.xml
 A:\Dev\GMTK-Jam-2022\GMTK-Jam2022\Temp\Bin\Debug\Unity.Burst.Unsafe.xml
+A:\Dev\GMTK-Jam-2022\GMTK-Jam2022\Temp\Bin\Debug\DOTween.xml
 A:\Dev\GMTK-Jam-2022\GMTK-Jam2022\Temp\Bin\Debug\Unity.VisualScripting.Flow.Editor.pdb
 A:\Dev\GMTK-Jam-2022\GMTK-Jam2022\Temp\Bin\Debug\Unity.2D.Tilemap.Extras.pdb
 A:\Dev\GMTK-Jam-2022\GMTK-Jam2022\Temp\Bin\Debug\Unity.2D.Animation.Editor.pdb
@@ -383,11 +385,8 @@ A:\Dev\GMTK-Jam-2022\GMTK-Jam2022\Temp\Bin\Debug\Unity.VisualScripting.State.pdb
 A:\Dev\GMTK-Jam-2022\GMTK-Jam2022\Temp\Bin\Debug\UnityEngine.NVIDIAModule.xml
 A:\Dev\GMTK-Jam-2022\GMTK-Jam2022\Temp\Bin\Debug\UnityEditor.TestRunner.pdb
 A:\Dev\GMTK-Jam-2022\GMTK-Jam2022\Temp\Bin\Debug\UnityEngine.TestRunner.pdb
-A:\Dev\GMTK-Jam-2022\GMTK-Jam2022\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
-A:\Dev\GMTK-Jam-2022\GMTK-Jam2022\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
-A:\Dev\GMTK-Jam-2022\GMTK-Jam2022\obj\Debug\Assembly-CSharp.csproj.CopyComplete
-A:\Dev\GMTK-Jam-2022\GMTK-Jam2022\obj\Debug\Assembly-CSharp.dll
-A:\Dev\GMTK-Jam-2022\GMTK-Jam2022\obj\Debug\Assembly-CSharp.pdb
-A:\Dev\GMTK-Jam-2022\GMTK-Jam2022\Temp\Bin\Debug\DOTween.dll
-A:\Dev\GMTK-Jam-2022\GMTK-Jam2022\Temp\Bin\Debug\Assembly-CSharp-firstpass.pdb
-A:\Dev\GMTK-Jam-2022\GMTK-Jam2022\Temp\Bin\Debug\DOTween.xml
+A:\Dev\GMTK-Jam-2022\GMTK-Jam2022\obj\Debug\Assembly-CSharp-firstpass.csprojAssemblyReference.cache
+A:\Dev\GMTK-Jam-2022\GMTK-Jam2022\obj\Debug\Assembly-CSharp-firstpass.csproj.CoreCompileInputs.cache
+A:\Dev\GMTK-Jam-2022\GMTK-Jam2022\obj\Debug\Assembly-CSharp-firstpass.csproj.CopyComplete
+A:\Dev\GMTK-Jam-2022\GMTK-Jam2022\obj\Debug\Assembly-CSharp-firstpass.dll
+A:\Dev\GMTK-Jam-2022\GMTK-Jam2022\obj\Debug\Assembly-CSharp-firstpass.pdb

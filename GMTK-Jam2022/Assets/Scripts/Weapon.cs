@@ -8,7 +8,7 @@ public class Weapon : MonoBehaviour
     public Transform firePoint, parent;
     public GameObject projectile;
     public float force;
-    public float fireRate = 2f;
+    public float fireRate = 1.5f;
     private float lastShot = 0;
     public AudioSource fire;
 

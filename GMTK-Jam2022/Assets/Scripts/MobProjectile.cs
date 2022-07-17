@@ -7,18 +7,18 @@ public class MobProjectile : MonoBehaviour
     public GameObject player;
     public Rigidbody2D mbProjectile;
     public float speed;
-    public float projDecay;
-    AudioSource hitEffect;
+    private float projDecay;
+    //AudioSource hitEffect;
     public AudioClip clip;
-
+    //private BoxCollider2D hitbox;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         mbProjectile = GetComponent<Rigidbody2D>();
-        hitEffect = GetComponent<AudioSource>();
-        projDecay = Time.time + 2f;
-
+        //hitEffect = GetComponent<AudioSource>();
+        projDecay = Time.time + 10f;
+        //hitbox = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -48,12 +48,15 @@ public class MobProjectile : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Player"))
         {
-            hitEffect.Play();
+            //hitEffect.Play();
             player.GetComponent<PlayerCharacter>().Death();
 
             Destroy(gameObject);
         }
+
+
     }
+
 
     public void HitByPlProj()
     {
