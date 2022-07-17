@@ -28,8 +28,7 @@ public class PlayerCharacter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
-        RotateWep();
+
     }
 
     void Move()
@@ -39,9 +38,13 @@ public class PlayerCharacter : MonoBehaviour
         float verticalAxis = Input.GetAxis("Vertical");
 
         //Vector2 moveDirection = new Vector2(horizontalAxis, verticalAxis);
-        Vector3 moveDirection = new Vector3(horizontalAxis, verticalAxis, 0);
+        Vector2 moveDirection = new Vector2(horizontalAxis, verticalAxis);
 
-        playerBody.AddForce(moveDirection * speed);
+        //playerBody.AddForce(moveDirection * speed);
+        playerBody.MovePosition(playerBody.position + moveDirection * speed * Time.fixedDeltaTime);
+
+        //playerBody.position = Vector2.MoveTowards(playerBody.position, moveDirection, speed * Time.deltaTime);
+
 
         //walk.Play();
 
@@ -54,6 +57,13 @@ public class PlayerCharacter : MonoBehaviour
 
 
 
+
+    }
+
+    private void FixedUpdate()
+    {
+        Move();
+        RotateWep();
 
     }
 
