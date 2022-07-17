@@ -108,6 +108,7 @@ public class PlanningPhaseManager : MonoBehaviour
         Debug.Log("Dice Rolled!");
 
         _rollButton.SetActive(false);
+        //_rerollPanel.SetActive(false);
 
         SetRerollDetail();
         _goButton.SetActive(true);
@@ -152,7 +153,8 @@ public class PlanningPhaseManager : MonoBehaviour
     public void RollDice()
     {
         _dicePanel.SetActive(false);
-        _rollButton.SetActive(false);
+        //_rollButton.SetActive(false);
+        _rerollPanel.SetActive(false);
         _rollDiceChannelSO.RaiseEvent(false);
     }
 
@@ -163,7 +165,8 @@ public class PlanningPhaseManager : MonoBehaviour
         GameManager.Instance.UseReroll();
         SetRerollDetail();
 
-        _rerollButton.SetActive(false);
+        //_rerollButton.SetActive(false);
+        _rerollPanel.SetActive(false);
         _goButton.SetActive(false);
         _rollDiceChannelSO.RaiseEvent(true);
     }
@@ -173,8 +176,6 @@ public class PlanningPhaseManager : MonoBehaviour
         // deactivate/hide roll buttons when combat starts!
         _rerollPanel.SetActive(false);
         _goButton.SetActive(false);
-
-
 
         _startCombatChannelSO.RaiseEvent();
     }

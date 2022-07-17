@@ -11,10 +11,12 @@ public class Exit : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        // exiting floor!
-        
-        _exitFloorChannelSO.RaiseEvent();
-        GameManager.Instance.GoToNextFloor();
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            _exitFloorChannelSO.RaiseEvent();
+            GameManager.Instance.GoToNextFloor();
+        }
+
     }
 
 }

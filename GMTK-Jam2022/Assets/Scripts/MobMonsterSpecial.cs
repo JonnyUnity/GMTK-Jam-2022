@@ -36,13 +36,21 @@ public class MobMonsterSpecial : MonoBehaviour
 
     void SpMobAI()
     {
-        if (player == null)
+        if (GameManager.Instance.State == GameState.PLAYER_DEAD)
         {
             monRigidbody.velocity = Vector2.zero;
             floatingHum.Stop();
+            return;
         }
-        else
-        {
+
+
+        //if (player == null)
+        //{
+        //    monRigidbody.velocity = Vector2.zero;
+        //    floatingHum.Stop();
+        //}
+        //else
+        //{
 
             Vector2 playerPosition = player.GetComponent<PlayerCharacter>().GetPosition();
             monRigidbody.velocity = Vector2.zero;
@@ -63,7 +71,7 @@ public class MobMonsterSpecial : MonoBehaviour
 
                 // Debug.Log("Shooting");
             }
-        }
+        //}
 
 
 
