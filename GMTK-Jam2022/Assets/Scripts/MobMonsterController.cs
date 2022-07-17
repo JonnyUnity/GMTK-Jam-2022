@@ -9,7 +9,11 @@ public class MobMonsterController : MonoBehaviour
     public Rigidbody2D monRigidbody;
     public SpriteRenderer monSprite;
     AudioSource walk;
-    private int score;
+
+
+    [SerializeField] private GOEventChannelSO _removeObjectChannelSO;
+    [SerializeField] private int _score;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -74,6 +78,7 @@ public class MobMonsterController : MonoBehaviour
 
     public void Death()
     {
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        _removeObjectChannelSO.RaiseEvent(gameObject, _score);
     }
 }

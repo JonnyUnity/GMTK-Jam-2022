@@ -158,6 +158,7 @@ MonoBehaviour:
   _elitePrefab: {fileID: 6172708983029244580, guid: b9b09be28e80a3545b724b8ab5c9e7b6, type: 3}
   _skullPrefab: {fileID: 6172708983029244580, guid: c1b9d27d2a6a6354daebba6e6afbd1b1, type: 3}
   _skeletonPrefab: {fileID: 6172708983029244580, guid: 61b011b71ec1c1949b2a169a1f068d84, type: 3}
+  _redSkeletonPrefab: {fileID: 6172708983029244580, guid: d0fa5bb095dd1fd4aab4d0d79741e615, type: 3}
   _dice: {fileID: 11400000, guid: af60b43d753165941abda9a0639e43bb, type: 2}
   _arenaObj: {fileID: 1816079581}
   _walls: {fileID: 981267221}

@@ -13,6 +13,7 @@ public class CombatManager : MonoBehaviour
     [SerializeField] private GameObject _elitePrefab;
     [SerializeField] private GameObject _skullPrefab;
     [SerializeField] private GameObject _skeletonPrefab;
+    [SerializeField] private GameObject _redSkeletonPrefab;
  
 
     [Header("Dice data")]
@@ -118,7 +119,8 @@ public class CombatManager : MonoBehaviour
                     break;
                 case 2:
 
-                    Debug.Log("EMPTY?!");
+                    Debug.Log("SPAWN RED SKELETON");
+                    newObj = Instantiate(_redSkeletonPrefab, _arenaObj.transform, false);
                     break;
 
                 case 3:
@@ -136,8 +138,7 @@ public class CombatManager : MonoBehaviour
 
                 case 5:
 
-                    Debug.Log("SPAWN SKELETON2!");
-                    newObj = Instantiate(_skeletonPrefab, _arenaObj.transform, false);
+                    Debug.Log("SPAWN EMPTY!");
                     break;
 
                 case 6:
@@ -168,7 +169,6 @@ public class CombatManager : MonoBehaviour
         Debug.Log(_playerObj.transform.position);
 
         _walls.SetActive(true);
-        //_gate.SetActive(true);
 
         CheckFloorCleared();
                 
@@ -216,11 +216,5 @@ public class CombatManager : MonoBehaviour
             _gateOpenChannelSO.RaiseEvent();
         }
     }
-
-
-    //private void OpenGate(bool open)
-    //{
-    //    _gate.SetActive(!open);
-    //}
 
 }

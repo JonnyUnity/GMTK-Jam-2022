@@ -1465,7 +1465,7 @@ MonoBehaviour:
   _updateScoreChannelSO: {fileID: 11400000, guid: 29c9b90b850f90349bc0168f6b61c097, type: 2}
   _gameOverChannelSO: {fileID: 11400000, guid: f475b5b5ecccc09498c5c4a8c08f584f, type: 2}
   _NumDiceForFloor: 0000000001000000020000000200000003000000030000000400000005000000060000000700000008000000
-  _maxFloors: 4
+  _maxFloors: 10
 --- !u!4 &1013696313
 Transform:
   m_ObjectHideFlags: 0

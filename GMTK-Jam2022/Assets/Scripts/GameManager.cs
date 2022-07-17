@@ -144,6 +144,7 @@ public class GameManager : Singleton<GameManager>
 
         _floor = 1;
         _numRerolls = 3;
+        _score = 0;
 
         _loadFloorChannelSO.RaiseEvent();
         return _numDice;

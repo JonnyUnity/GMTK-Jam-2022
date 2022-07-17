@@ -13,7 +13,11 @@ public class MobMonsterSpecial : MonoBehaviour
     private float lastShot = 0;
     public float health = 4f;
     private int score;
-    public AudioSource fireSpell, floatingHum;
+    private AudioSource fireSpell, floatingHum;
+
+
+    [SerializeField] private GOEventChannelSO _removeObjectChannelSO;
+    [SerializeField] private int _score;
 
     // Start is called before the first frame update
     void Start()
@@ -97,7 +101,8 @@ public class MobMonsterSpecial : MonoBehaviour
 
         if (health <= 0)
         {
-            Destroy(gameObject);
+            _removeObjectChannelSO.RaiseEvent(gameObject, _score);
+            //Destroy(gameObject);
 
         }
 

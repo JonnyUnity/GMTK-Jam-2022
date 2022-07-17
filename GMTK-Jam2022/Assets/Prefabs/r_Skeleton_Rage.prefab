@@ -152,6 +152,8 @@ MonoBehaviour:
   player: {fileID: 1051786327533669984, guid: 6108be6711095dc45a0d0f546e986d37, type: 3}
   monRigidbody: {fileID: 5179065609362209476}
   monSprite: {fileID: 1590007824146862293}
+  _removeObjectChannelSO: {fileID: 11400000, guid: afd05c9650d816c4cbd7940be77ebc55, type: 2}
+  _score: 200
 --- !u!95 &3375513856851137389
 Animator:
   serializedVersion: 4

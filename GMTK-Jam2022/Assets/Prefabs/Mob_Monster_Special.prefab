@@ -155,8 +155,8 @@ MonoBehaviour:
   projectile: {fileID: 8362372360304294050, guid: e12eaab8c4479c24d80d29f10a571597, type: 3}
   fireRate: 5
   health: 4
-  fireSpell: {fileID: 0}
-  floatingHum: {fileID: 0}
+  _removeObjectChannelSO: {fileID: 11400000, guid: afd05c9650d816c4cbd7940be77ebc55, type: 2}
+  _score: 1000
 --- !u!95 &7119957462563928505
 Animator:
   serializedVersion: 4
