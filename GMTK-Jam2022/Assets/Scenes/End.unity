@@ -945,7 +945,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scoreText: {fileID: 1299930759}
-  _musicClip: {fileID: 8300000, guid: 5742a409634402e449cca3d3f40aca6f, type: 3}
+  _musicClip: {fileID: 8300000, guid: 7e8299734d2ea4b4486d187d786ac680, type: 3}
 --- !u!1001 &2011457676
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -174,6 +174,85 @@ public class CombatManager : MonoBehaviour
                 
     }
 
+    private IEnumerator SpawnLevelObjectsCoroutine()
+    {
+        _spawnedObjects = new List<GameObject>();
+        _audioSource.PlayOneShot(_spawnObjectsClip);
+
+        foreach (var die in _dice.Dice)
+        {
+
+            var diePosition = die.Data.Transform.position;
+            Debug.Log(die.Data.DieValue + " " + diePosition);
+            GameObject newObj = null;
+
+            switch (die.Data.DieValue)
+            {
+                case 1:
+
+                    Debug.Log("SPAWN ELITE!");
+
+                    newObj = Instantiate(_elitePrefab, _arenaObj.transform, false);
+                    break;
+                case 2:
+
+                    Debug.Log("SPAWN RED SKELETON");
+                    newObj = Instantiate(_redSkeletonPrefab, _arenaObj.transform, false);
+                    break;
+
+                case 3:
+
+                    Debug.Log("SPAWN SKULL!");
+                    newObj = Instantiate(_skullPrefab, _arenaObj.transform, false);
+
+                    break;
+
+                case 4:
+
+                    Debug.Log("SPAWN SKELETON!");
+                    newObj = Instantiate(_skeletonPrefab, _arenaObj.transform, false);
+                    break;
+
+                case 5:
+
+                    Debug.Log("SPAWN EMPTY!");
+                    break;
+
+                case 6:
+
+                    Debug.Log("SPAWN TREASURE!");
+                    newObj = Instantiate(_treasurePrefab, _arenaObj.transform, false);
+                    break;
+
+            }
+
+            if (newObj != null)
+            {
+                newObj.transform.position = new Vector3(diePosition.x, diePosition.y, 0);
+                _spawnedObjects.Add(newObj);
+            }
+
+
+        }
+
+        Debug.Log("SPAWN PLAYER! " + _dice.SpawnDie.Data.Transform.position);
+        Debug.Log("ARENA TRANSFORM " + _arenaObj.transform.position);
+        var playerTransform = _dice.SpawnDie.Data.Transform;
+        _playerObj = Instantiate(_playerPrefab, _arenaObj.transform, false);
+
+        _playerObj.transform.position = new Vector3(playerTransform.position.x, playerTransform.position.y, 0);
+
+
+        Debug.Log(_playerObj.transform.position);
+
+        _walls.SetActive(true);
+
+        yield return new WaitForSeconds(1.5f);
+
+        CheckFloorCleared();
+
+    }
+
 
     public void FloorCleared()
     {

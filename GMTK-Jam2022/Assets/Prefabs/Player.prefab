@@ -452,7 +452,7 @@ MonoBehaviour:
   parent: {fileID: 0}
   projectile: {fileID: 8362372360304294050, guid: a6c61e0171016dd40b2981d9d44b66a0, type: 3}
   force: 10
-  fireRate: 2
+  fireRate: 0.6
   fire: {fileID: 2751734532215679950}
 --- !u!82 &2751734532215679950
 AudioSource:

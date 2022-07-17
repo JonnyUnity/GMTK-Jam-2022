@@ -70,6 +70,9 @@ public class PlayerCharacter : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (GameManager.Instance.State == GameState.PLAYER_DEAD)
+            return;
+
         Move();
         RotateWep();
 
@@ -123,7 +126,7 @@ public class PlayerCharacter : MonoBehaviour
 
     public void Death()
     {
-
+        AudioManager.Instance.FadeMusicOut(0.1f);
         walk.PlayOneShot(_deathSoundClip);
 
         GameManager.Instance.PlayerHasDied();
